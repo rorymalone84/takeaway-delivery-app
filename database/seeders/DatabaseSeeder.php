@@ -20,6 +20,26 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        \App\Models\Category::factory()->create([
+         'title' => 'Starter',
+        ]);
+
+        \App\Models\Category::factory()->create([
+            'title' => 'Main',
+        ]);
+
+        \App\Models\Category::factory()->create([
+            'title' => 'Dessert',
+        ]);
+
+        \App\Models\Category::factory()->create([
+            'title' => 'Drink',
+        ]);
+
+        \App\Models\Category::factory()->create([
+            'title' => 'Extras',
+        ]);
+
         Product::factory(10)->create();
     }
 }
