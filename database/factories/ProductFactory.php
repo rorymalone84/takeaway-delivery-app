@@ -24,7 +24,8 @@ class ProductFactory extends Factory
             'heat' => $this->faker->foodName(),
             'cost'=> $this->faker->numberBetween($min = 5, $max = 25),
             'image'=> $this->faker->imageUrl($width = 200, $height = 200),
-            'category_id' => $this->faker->numberBetween($min = 1, $max = 5)
+            'category_id' => $this->faker->numberBetween($min = 1, $max = 5),
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 10)
         ];
     }
 }
