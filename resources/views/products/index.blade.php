@@ -47,7 +47,7 @@
                                 {{ $product->cost }}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a href="{{ route('products.edit',  $product->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             </td>                                           
                     </tr>
                     @endforeach                  

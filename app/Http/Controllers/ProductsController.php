@@ -23,8 +23,12 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        //$product variable below is just to pass as an expected variable for the reusable products create/update form.
+        $product = new Product();
+        //the categories collection is required to pass created categories into the products
+        //form and relate each product to a category via category_id.
         $categories = Category::all();
-        return view('products.create', ['categories' => $categories]);
+        return view('products.create', ['categories' => $categories, 'product' => $product]);
     }
 
     /**
@@ -73,10 +77,8 @@ class ProductsController extends Controller
             ]);
         }
 
-        dd($request);
-
         return redirect('/products')->with('message','Product added');
-    
+
     }
 
     /**
@@ -90,24 +92,68 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        return view('products.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $validate = $this->validate(request(),[
+            //put fields to be validated here
+            'title' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
+            'cost' => 'required',
+            'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
+        ]);
+
+        //if image upload isn't used, keep the previous image path
+        if(empty($request['image'])){            
+            Product::where('id',$product->id)
+            ->update([
+                'title' => $request->input('title'),
+                'category_id' => $request->input('category'),            
+                'description' => $request->input('description'),
+                'ingredients' => $request->input('ingredients'),
+                'image' => 'image',
+                'heat' => $request->input('heat'),
+                'cost' => $request->input('cost'),
+                'user_id' => auth()->user()->id
+            ]);     
+        }
+        else{
+            //else' image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
+            $imageUploaded = request()->file('image');
+            $imageName = time(). '.' . $imageUploaded->getClientOriginalExtension();
+            
+            Product::where('id',$product->id)
+            ->update([
+                'title' => $request->input('title'),
+                'category_id' => $request->input('category'),            
+                'description' => $request->input('description'),
+                'ingredients' => $request->input('ingredients'),
+                'image' => $imageName,
+                'heat' => $request->input('heat'),
+                'cost' => $request->input('cost'),
+                'user_id' => auth()->user()->id
+            ]); 
+        }
+        return redirect('/products')->with('message', 'Product updated!');        
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect('/products')->with('message','Product deleted');
     }
 }
