@@ -1,5 +1,5 @@
 @if($product->id)    
-  <img class="h-auto max-w-lg mb-12" src="{{$product->image}}">
+  <img class="h-auto max-w-lg mb-12" src="{{asset('images/'. $product->image)}}">
 @else
   <img class="h-auto max-w-lg mb-12" id="preview">
 @endif
@@ -50,8 +50,8 @@
   <div class="flex flex-wrap -mx-3 mb-2">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
       <x-input-label value="upload image"/>
-      @if('product')
-        <input type="file" name="image" value="{{$product->image}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      @if('product')        
+        <input type="file" name="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       @else
         <input type="file" name="image" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
       @endif
@@ -61,7 +61,7 @@
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
       <x-input-label value="cost"/>
       @if('product')
-        <input name="cost" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter cost" value="{{$product->cost}}"/>       
+        <input name="cost" value="{{$product->cost}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter cost" value="{{$product->cost}}"/>       
       @else
         <input name="cost" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter cost">
       @endif
@@ -76,9 +76,4 @@
 
 <div class="flex items-center gap-4 mt-12" >
   <x-primary-button class="bg-green-600 dark:bg-green-600 dark:text-slate-200">{{ __('Save') }}</x-primary-button>
-  @if($product->id)
-    <x-confirmation-modal name="{{$product->title}}">
-      @include('products.partials.delete-form')
-    </x-confirmation-modal>  
-  @endif
 </div>

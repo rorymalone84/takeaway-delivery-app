@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <form method="POST" action="{{ route('products.store') }}" class="ml-7 mr-7 mt-12">
+    <form method="POST" action="{{ route('products.store') }}" class="ml-7 mr-7 mt-12" enctype="multipart/form-data">
         @csrf
 
         @include('products.partials.product-form');

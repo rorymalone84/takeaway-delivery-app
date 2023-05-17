@@ -53,7 +53,6 @@ class ProductsController extends Controller
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
                 'image' => null,
-                'heat' => $request->input('heat'),
                 'cost' => $request->input('cost'),
                 'user_id' => auth()->user()->id
             ]);
@@ -62,17 +61,16 @@ class ProductsController extends Controller
             
         } else{
             //if image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
-            $imageUploaded = request()->file('image');
-            $imageName = time(). '.' . $imageUploaded->getClientOriginalExtension();
+            $image = time().'.'.$request->image->extension();    
+            $request->image->move(public_path('images'), $image);
 
             Product::create([
                 'title' => $request->input('title'),
                 'category_id' => $request->input('category'),            
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
-                'heat' => $request->input('heat'),
                 'cost' => $request->input('cost'),
-                'image' => $imageName,
+                'image' => $image,
                 'user_id' => auth()->user()->id
             ]);
         }
@@ -121,25 +119,22 @@ class ProductsController extends Controller
                 'category_id' => $request->input('category'),            
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
-                'image' => 'image',
-                'heat' => $request->input('heat'),
                 'cost' => $request->input('cost'),
                 'user_id' => auth()->user()->id
             ]);     
         }
         else{
-            //else' image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
-            $imageUploaded = request()->file('image');
-            $imageName = time(). '.' . $imageUploaded->getClientOriginalExtension();
-            
+            //else' image is uploaded
+            $image = time().'.'.$request->image->extension();     
+            $request->image->move(public_path('images'), $image);
+
             Product::where('id',$product->id)
             ->update([
                 'title' => $request->input('title'),
                 'category_id' => $request->input('category'),            
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
-                'image' => $imageName,
-                'heat' => $request->input('heat'),
+                'image' => $image,
                 'cost' => $request->input('cost'),
                 'user_id' => auth()->user()->id
             ]); 
