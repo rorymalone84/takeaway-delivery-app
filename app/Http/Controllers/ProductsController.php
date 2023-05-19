@@ -23,10 +23,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //$product variable below is just to pass as an expected variable for the reusable products create/update form.
+        //The $product variable is just to pass an empty expected variable for the reusable products create/update form.
         $product = new Product();
-        //the categories collection is required to pass created categories into the products
-        //form and relate each product to a category via category_id.
+        //the $categories collection is required to pass existing categories into the products form as a dropdown option.
         $categories = Category::all();
         return view('products.create', ['categories' => $categories, 'product' => $product]);
     }
@@ -77,14 +76,6 @@ class ProductsController extends Controller
 
         return redirect('/products')->with('message','Product added');
 
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

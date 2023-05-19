@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 
 /*
@@ -24,6 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::resource('products', ProductsController::class, ['names' => 'products'])->middleware(['auth', 'verified']);
+Route::resource('categories', CategoryController::class, ['names' => 'categories'])->middleware(['auth', 'verified']);
 
 
 

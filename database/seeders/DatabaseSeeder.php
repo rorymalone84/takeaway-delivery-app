@@ -22,22 +22,27 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Category::factory()->create([
          'title' => 'Starter',
+         'user_id' => 1
         ]);
 
         \App\Models\Category::factory()->create([
             'title' => 'Main',
+            'user_id' => 1
         ]);
 
         \App\Models\Category::factory()->create([
             'title' => 'Dessert',
+            'user_id' => 2
         ]);
 
         \App\Models\Category::factory()->create([
             'title' => 'Drink',
+            'user_id' => 3
         ]);
 
         \App\Models\Category::factory()->create([
             'title' => 'Extras',
+            'user_id' => 2
         ]);
 
         Product::factory(10)->create();
