@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
@@ -26,6 +27,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('products', ProductsController::class, ['names' => 'products'])->middleware(['auth', 'verified']);
 Route::resource('categories', CategoryController::class, ['names' => 'categories'])->middleware(['auth', 'verified']);
+Route::resource('users', UserController::class, ['names' => 'users'])->middleware(['auth', 'verified']);
 
 
 
