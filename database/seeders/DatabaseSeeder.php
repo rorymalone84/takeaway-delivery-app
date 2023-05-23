@@ -13,6 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        \App\Models\Store::factory()->create([
+            'name' => 'Summerhill',
+            'address_line_1' => 'Unit 13, Summerhill Shopping Center',
+            'address_line_2' => 'Lang Stracht',
+            'city' => 'Aberdeen',
+            'postcode' => 'AB1954R',
+            'phone' => 01224313131,
+            'latitude' => 57.151489283571486,
+            'longitude' =>  -2.153055090963397
+        ]);
+        
+        
         \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
