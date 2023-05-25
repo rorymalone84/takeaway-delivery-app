@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -23,14 +24,28 @@ class DatabaseSeeder extends Seeder
             'latitude' => 57.151489283571486,
             'longitude' =>  -2.153055090963397
         ]);
-        
+
+        $this->call(RoleSeeder::class);        
         
         \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ])->assignRole('admin');
+
+        User::factory()->create([
+            'name' => 'customer',
+            'email' => 'customer@customer.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ])->assignRole('customer');
+
+        User::factory()->create([
+            'name' => 'chef',
+            'email' => 'chef@chef.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        ])->assignRole('chef');
 
         \App\Models\Category::factory()->create([
          'title' => 'Starter',

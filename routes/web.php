@@ -26,12 +26,28 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('products', ProductsController::class, ['names' => 'products'])->middleware(['auth', 'verified']);
-Route::resource('categories', CategoryController::class, ['names' => 'categories'])->middleware(['auth', 'verified']);
-Route::resource('users', UserController::class, ['names' => 'users'])->middleware(['auth', 'verified']);
-Route::resource('stores', StoresController::class, ['names' => 'stores'])->middleware(['auth', 'verified']);
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware(['auth', 'role:admin'])->name('admin.dashboard');
 
+Route::get('/chef/dashboard', function () {
+    return view('chef.dashboard');
+})->middleware(['auth', 'role:chef'])->name('chef.dashboard');
 
+Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function(){
+
+});
+
+Route::middleware(['auth', 'role:chef'])->prefix('chef')->group(function(){
+
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
+    Route::resource('products', ProductsController::class, ['names' => 'products']);
+    Route::resource('categories', CategoryController::class, ['names' => 'categories']);
+    Route::resource('users', UserController::class, ['names' => 'users']);
+    Route::resource('stores', StoresController::class, ['names' => 'stores']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

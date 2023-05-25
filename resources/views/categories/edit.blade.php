@@ -1,4 +1,4 @@
-<x-app-layout x-data="{open: false}">
+<x-admin-layout x-data="{open: false}">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Update Category') }}
@@ -23,4 +23,4 @@
         <div class="rounded text-red-600 p-2 ">Warning: deleting this category will also delete all the products within this category</div>
         <div class="rounded text-slate-600 p-2 dark:text-white">If you wish to keep the products under this category, update their category before proceeding with deletion</div>
     @endif    
-</x-app-layout>
+</x-admin-layout>
