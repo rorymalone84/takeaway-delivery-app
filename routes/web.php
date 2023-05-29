@@ -6,6 +6,7 @@ use App\Http\Controllers\StoresController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\StoreFrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,10 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [StoreFrontController::class, 'index'])->name('storefront.index');
+Route::get('/store_front/{id}', [StoreFrontController::class, 'show_store'])->name('storefront.show');
+Route::get('/store_front/product/{id}', [StoreFrontController::class, 'show_product'])->name('storefront.product');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
