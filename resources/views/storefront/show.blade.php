@@ -16,13 +16,15 @@
             @foreach ($category->products as $product)
             <div class="mx-auto">
                 <img 
-                    src="{{ asset($product->image) }}" 
+                    src="{{ asset('images/'.$product->image) }}" 
                     alt="{{ $product->name }}" 
                     style="height:200px !important;">
-        
-                <h2 class="text-xl text-gray-600 font-bold pb-8">
-                    {{ $product->title }}
-                </h2>
+
+                <a href="/store/show_product/{{ $product->id }}">        
+                    <h2 class="text-xl text-gray-600 font-bold pb-8">
+                        {{ $product->title }}
+                    </h2>
+                </a>
                 
                 <p class="font-thin text-xs text-black pb-8">
                     {{ $product->description }}
@@ -34,7 +36,7 @@
         
                 <a  href="/store/show_product/{{ $product->id }}"
                     class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
-                    Read more...
+                    Add to basket
                 </a>
             </div>
             @endforeach
