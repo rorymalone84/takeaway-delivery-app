@@ -25,7 +25,7 @@ class StoreFrontController extends Controller
 
     public function show_product(Product $product){
 
-        return view('storefront.product', [
+        return view('storefront.showproduct', [
             'product' => $product,
         ]);
     }

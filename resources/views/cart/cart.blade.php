@@ -23,13 +23,13 @@
                         <th 
                             scope="col" 
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Details
+                            Description
                         </th>
 
                         <th 
                             scope="col" 
                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Price
+                            Cost
                         </th>
 
                         <th 
@@ -52,8 +52,8 @@
                     </tr>
                 </thead>
 
-                @if (session('cartItems'))
-                    @foreach (session('cartItems') as $key => $value)
+                @if (session('cartProducts'))
+                    @foreach (session('cartProducts') as $key => $value)
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">
@@ -76,14 +76,14 @@
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
-                                    {{ $value['details'] }}
+                                    {{ $value['description'] }}
                                 </div>
                             </td>
 
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span 
                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    $ {{ $value['price'] }}
+                                    $ {{ $value['cost'] }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -100,8 +100,8 @@
                             </td>
                             
                             <td class="px-6 py-4 whitespace-nowrap">
-                               <div class="text-sm text-gray-900">
-                                    $ {{ $value['quantity'] * $value['price'] }} 
+                               <div class="text-sm text-gray-900" name="cost" value="{{ $value['quantity'] * $value['cost'] }}">
+                                    $ {{ $value['quantity'] * $value['cost'] }} 
                                 </div>
                             </td>
 

@@ -5,28 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
+/**
+ * This resource Controls the stores data from the admin section .
+*/
+
 class StoresController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return view('stores.index', ['stores' => Store::all()]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $store = new Store();
         return view('stores.create', ['store' => $store]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         Store::create([
@@ -43,17 +39,11 @@ class StoresController extends Controller
         return redirect('/stores')->with('message', 'New Store created!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Store $store)
     {
         return view('stores.edit', ['store' => $store]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Store $store)
     {
         Store::where('id', $store->id)
@@ -71,9 +61,6 @@ class StoresController extends Controller
         return redirect('/stores')->with('message', 'Store updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Store $store)
     {
         $store->delete();

@@ -21,9 +21,12 @@ use App\Http\Controllers\StoreFrontController;
 */
 
 Route::get('/', [StoreFrontController::class, 'index'])->name('storefront.index');
-Route::get('/store_front/{id}', [StoreFrontController::class, 'show_store'])->name('storefront.show');
-Route::get('/store_front/product/{id}', [StoreFrontController::class, 'show_product'])->name('storefront.product');
+Route::get('/storefront/{id}', [StoreFrontController::class, 'show_store'])->name('storefront.show');
+Route::get('/storefront/showproduct/{id}', [StoreFrontController::class, 'show_product'])->name('storefront.product');
+
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
+Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->name('delete.from.cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -22,7 +22,7 @@
                    {{ $store->postcode}}
                 </p>
         
-                <a  href="/store_front/{{ $store->id }}"
+                <a  href="/storefront/{{ $store->id }}"
                     class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
                     Go to store
                 </a>

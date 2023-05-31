@@ -20,7 +20,7 @@
                     alt="{{ $product->name }}" 
                     style="height:200px !important;">
 
-                <a href="/store/show_product/{{ $product->id }}">        
+                <a href="/storefront/showproduct/{{ $product->id }}">        
                     <h2 class="text-xl text-gray-600 font-bold pb-8">
                         {{ $product->title }}
                     </h2>
@@ -34,7 +34,8 @@
                 Price: <span class="text-red-500">$ {{ $product->cost }}</span>
                 </p>
         
-                <a  href="/store/show_product/{{ $product->id }}"
+                <a  href="{{route('add.to.cart', $product->id)}}"
+                    role="button"
                     class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
                     Add to basket
                 </a>
