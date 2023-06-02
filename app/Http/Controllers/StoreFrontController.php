@@ -15,7 +15,7 @@ class StoreFrontController extends Controller
         ]);
     }
 
-    public function show_store(Store $store){
+    public function showstore(Store $store){
 
         return view('storefront.show', [
             'categories' => Category::with('products')->get(),
@@ -23,10 +23,8 @@ class StoreFrontController extends Controller
         ]);
     }
 
-    public function show_product(Product $product){
+    public function showproduct($id){
 
-        return view('storefront.showproduct', [
-            'product' => $product,
-        ]);
+        return view('storefront.showproduct', ['product' => Product::findOrFail($id)]);
     }
 }

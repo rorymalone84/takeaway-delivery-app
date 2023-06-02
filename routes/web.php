@@ -21,8 +21,8 @@ use App\Http\Controllers\StoreFrontController;
 */
 
 Route::get('/', [StoreFrontController::class, 'index'])->name('storefront.index');
-Route::get('/storefront/{id}', [StoreFrontController::class, 'show_store'])->name('storefront.show');
-Route::get('/storefront/showproduct/{id}', [StoreFrontController::class, 'show_product'])->name('storefront.product');
+Route::get('/storefront/{id}', [StoreFrontController::class, 'showStore'])->name('storefront.show');
+Route::get('/storefront/showproduct/{id}', [StoreFrontController::class, 'showProduct'])->name('storefront.product');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
