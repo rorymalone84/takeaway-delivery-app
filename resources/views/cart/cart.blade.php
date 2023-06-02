@@ -87,7 +87,7 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <form action="{{ route('update.from.cart', $key) }}" method="POST">
+                                <form action="{{ route('update.cart', $key) }}" method="PUT">
                                     @csrf
                                     <select name="quantity" id="quantity"  onchange="this.form.submit()">
                                         @for ($i = 1; $i <= 10; $i++)

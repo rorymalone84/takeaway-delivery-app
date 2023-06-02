@@ -27,6 +27,7 @@ Route::get('/storefront/showproduct/{id}', [StoreFrontController::class, 'show_p
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->name('delete.from.cart');
+Route::get('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
