@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -34,7 +35,9 @@ class CategoryController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return view('categories.index',['categories' => Category::all()])->with('message', 'New Category created!');
+        Session::flash('message', "The Category was Created");
+
+        return view('categories.index',['categories' => Category::all()]);
     }
 
     /**
@@ -56,7 +59,9 @@ class CategoryController extends Controller
                 'user_id' => auth()->user()->id
             ]);
 
-            return view('categories.index',['categories' => Category::all()])->with('message', 'Category updated!');
+            Session::flash('message', "The Category was updated");
+
+            return view('categories.index',['categories' => Category::all()]);
     }
 
     /**
@@ -66,6 +71,8 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return view('categories.index',['categories' => Category::all()] )->with('message','Category deleted');
+        Session::flash('message', "The Category was deleted");
+
+        return view('categories.index',['categories' => Category::all()] );
     }
 }

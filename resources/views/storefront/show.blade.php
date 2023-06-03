@@ -41,7 +41,5 @@
             @endforeach
         </div>
         @endforeach
-    </div>
-
-   
+    </div>   
 </x-storefront>

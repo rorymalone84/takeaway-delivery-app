@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
@@ -55,7 +56,7 @@ class ProductsController extends Controller
                 'user_id' => auth()->user()->id
             ]);
     
-            return view('products.index', ['products' => Product::all()])->with('message','Product added');
+            return view('products.index', ['products' => Product::all()])->with('message', 'Category updated!');
             
         } else{
             //if image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
@@ -73,8 +74,9 @@ class ProductsController extends Controller
             ]);
         }
 
-        return view('products.index', ['products' => Product::all()])->with('message','Product added');
+        Session::flash('message', "The product was added");
 
+        return view('products.index', ['products' => Product::all()]);
     }
 
     /**
@@ -129,6 +131,8 @@ class ProductsController extends Controller
                 'user_id' => auth()->user()->id
             ]); 
         }
+
+        Session::flash('message', "The product was Updated");
         return view('products.index', ['products' => Product::all()])->with('message', 'Product updated!');        
     }
 
@@ -139,6 +143,8 @@ class ProductsController extends Controller
     {
         $product->delete();
 
-        return view('products.index', ['products' => Product::all()])->with('message','Product deleted');
+        Session::flash('message', "The product was deleted");
+
+        return redirect()->route('products.index', ['products' => Product::all()]);
     }
 }

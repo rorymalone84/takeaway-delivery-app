@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 /**
  * This resource Controls the stores data from the admin section .
@@ -36,11 +37,14 @@ class StoresController extends Controller
             'longitude' => $request->input('longitude')            
         ]);
 
-        return redirect('/stores')->with('message', 'New Store created!');
+        Session::flash('message', "The Store was Created");
+
+        return view('stores.index', ['stores' => Store::all()]);
     }
 
     public function edit(Store $store)
     {
+        
         return view('stores.edit', ['store' => $store]);
     }
 
@@ -58,13 +62,17 @@ class StoresController extends Controller
             'longitude' => $request->input('longitude')
         ]);
 
-        return redirect('/stores')->with('message', 'Store updated!');
+        Session::flash('message', "The Store was updated");
+
+        return view('stores.index', ['stores' => Store::all()]);
     }
 
     public function destroy(Store $store)
     {
         $store->delete();
 
-        return redirect('/stores')->with('message','Store deleted');
+        Session::now('message', "The Store was Deleted");
+
+        return view('stores.index', ['stores' => Store::all()]);
     }
 }
