@@ -3,7 +3,6 @@
     <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-8">
         Shopping Cart
     </h1>
-
     <hr class="border-1 border-gray-300">
 </div>
 
@@ -90,8 +89,7 @@
                                         @endfor
                                     </select>
                                 </form>
-                            </td>
-                            
+                            </td>                            
                             <td class="px-6 py-4 whitespace-nowrap">
                                <div class="text-sm text-gray-900" name="cost" value="{{ $value['quantity'] * $value['cost'] }}">
                                     $ {{ $value['quantity'] * $value['cost'] }} 

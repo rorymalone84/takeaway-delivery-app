@@ -14,8 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
-        return view('products.index', ['products' => $products]);
+        return view('products.index', ['products' => Product::all()]);
     }
 
     /**
@@ -56,7 +55,7 @@ class ProductsController extends Controller
                 'user_id' => auth()->user()->id
             ]);
     
-            return redirect('/products')->with('message','Product Added');
+            return view('products.index', ['products' => Product::all()])->with('message','Product added');
             
         } else{
             //if image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
@@ -74,7 +73,7 @@ class ProductsController extends Controller
             ]);
         }
 
-        return redirect('/products')->with('message','Product added');
+        return view('products.index', ['products' => Product::all()])->with('message','Product added');
 
     }
 
@@ -130,7 +129,7 @@ class ProductsController extends Controller
                 'user_id' => auth()->user()->id
             ]); 
         }
-        return redirect('/products')->with('message', 'Product updated!');        
+        return view('products.index', ['products' => Product::all()])->with('message', 'Product updated!');        
     }
 
     /**
@@ -140,6 +139,6 @@ class ProductsController extends Controller
     {
         $product->delete();
 
-        return redirect('/products')->with('message','Product deleted');
+        return view('products.index', ['products' => Product::all()])->with('message','Product deleted');
     }
 }

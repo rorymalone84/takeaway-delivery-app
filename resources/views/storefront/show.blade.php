@@ -1,47 +1,47 @@
 <x-storefront>
     <div class="mx-auto w-4/5">
-        <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-8">
-            Menu
+        <h1 class="text-2xl text-gray-800 font-bold pt-12 mb-8">
+            {{ $nearestStore->name }} Menu
         </h1>   
         <hr class="border-1 border-gray-300">
     </div>
 
-
     <div class="mx-auto w-4/5 mb-4 pb-8">
         @foreach ($categories as $category)
-        <div class="text-2xl text-gray-800 font-bold pt-12 mb-8" >{{ $category->title}}</div>
-        <hr class="border-1 border-gray-300">
-        
+        <div class="text-2xl text-gray-800 font-bold pt-12 mb-8" >{{ $category->title}}</div>        
+        <hr class="border-1 border-gray-300">        
         <div class="grid sm:grid-cols-4 gap-8 pt-20 mx-auto w-4/5">
-            @foreach ($category->products as $product)
-            <div class="mx-auto">
-                <img 
-                    src="{{ asset('images/'.$product->image) }}" 
-                    alt="{{ $product->name }}" 
-                    style="height:200px !important;">
-
-                <a href="/storefront/showproduct/{{ $product->id }}">        
-                    <h2 class="text-xl text-gray-600 font-bold pb-8">
-                        {{ $product->title }}
-                    </h2>
-                </a>
-                
-                <p class="font-thin text-xs text-black pb-8">
-                    {{ $product->description }}
-                </p>
-        
-                <p class="font-bold text-l text-black pb-8">
-                Price: <span class="text-red-500">$ {{ $product->cost }}</span>
-                </p>
-        
-                <a  href="{{route('add.to.cart', $product->id)}}"
-                    role="button"
-                    class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
-                    Add to basket
-                </a>
+            @foreach ($category->products as $product)           
+            <div class="!z-5 relative flex flex-col rounded-[20px] max-w-[300px] bg-white bg-clip-border shadow-3xl shadow-shadow-500 w-full !p-4 3xl:p-![18px] undefined">
+                <div class="h-full w-full">
+                    <div class="relative w-full">
+                        <img src="{{ asset('images/'.$product->image) }}" class="mb-3 rounded-xl 3xl:h-full 3xl:w-full object-scale-down h-48 w-96 " alt="">
+                        <button class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer">
+                            <div class="flex h-full w-full items-center justify-center rounded-full text-xl hover:bg-gray-50">
+                                <a  href="{{route('add.to.cart', $product->id)}}"
+                                    event.preventDefault()
+                                    @click="return false;"
+                                    class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
+                                   +
+                                </a>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="mb-3 flex items-center justify-between px-1 md:items-start">
+                        <div class="mb-2">                            
+                            <a href="/storefront/showproduct/{{ $product->id }}"> 
+                                <p class="text-lg font-bold text-navy-700"> {{ $product->title }}</p>
+                                <p class="mt-1 text-sm font-medium text-gray-600 md:mt-2">{{ $product->description }} </p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-1xl text-gray-800 font-bold" >£{{ $product->cost}}</div>     
+                </div>
             </div>
             @endforeach
         </div>
         @endforeach
     </div>
+
+   
 </x-storefront>

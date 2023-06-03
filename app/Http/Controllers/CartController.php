@@ -22,7 +22,7 @@ class CartController extends Controller
         else{
             $cartProducts[$id] = [
                 'quantity' => 1,
-                'name' => $product->name,
+                'title' => $product->title,
                 'description' => $product->description,
                 'image' => $product->image,
                 'ingredients' => $product->ingredients,
@@ -30,9 +30,8 @@ class CartController extends Controller
                 'category_id' => $product->category_id
             ];          
         }
-
         session()->put('cartProducts',$cartProducts);
-        return redirect()->back()->with('message', 'product added');
+        return redirect()->back()->with('message','product added');
     }
 
     public function deleteFromCart(Request $request){

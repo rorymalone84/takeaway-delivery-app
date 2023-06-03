@@ -12,8 +12,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('categories.index', ['categories' => $categories]);
+        return view('categories.index', ['categories' => Category::all()]);
     }
 
     /**
@@ -35,7 +34,7 @@ class CategoryController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return view('categories.index')->with('message', 'New Category created!');
+        return view('categories.index',['categories' => Category::all()])->with('message', 'New Category created!');
     }
 
     /**
@@ -57,7 +56,7 @@ class CategoryController extends Controller
                 'user_id' => auth()->user()->id
             ]);
 
-            return redirect('/categories')->with('message', 'Category updated!');
+            return view('categories.index',['categories' => Category::all()])->with('message', 'Category updated!');
     }
 
     /**
@@ -67,6 +66,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect('/categories')->with('message','Category deleted');
+        return view('categories.index',['categories' => Category::all()] )->with('message','Category deleted');
     }
 }

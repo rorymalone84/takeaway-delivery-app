@@ -52,6 +52,9 @@
                         </form>
                     </nav>
             </div>
+            <!-- success message-->
+           
+           
              <!-- Page Heading -->
              <div class="w-full dark:bg-gray-900">
                 <header class="bg-white dark:bg-gray-800 shadow">
