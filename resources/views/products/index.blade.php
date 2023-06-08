@@ -22,7 +22,7 @@
                     {{ $product->category->title }}
                 </x-table.table-data>
                 <x-table.table-data>
-                    {{ $product->cost }}
+                    {{ $product->price }}
                 </x-table.table-data>
                 <x-table.table-data>
                     <a href="{{ route('products.edit',  $product->id)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

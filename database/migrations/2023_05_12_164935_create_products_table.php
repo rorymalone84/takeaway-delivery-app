@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('ingredients');
-            $table->integer('cost');
+            $table->integer('price');
             $table->string('image')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('category_id');

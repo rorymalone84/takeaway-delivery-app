@@ -59,11 +59,11 @@
     </div>
     
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-      <x-input-label value="cost"/>
+      <x-input-label value="price"/>
       @if('product')
-        <input name="cost" value="{{$product->cost}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter cost" value="{{$product->cost}}"/>       
+        <input name="price" value="{{$product->price}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter price" value="{{$product->price}}"/>       
       @else
-        <input name="cost" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter cost">
+        <input name="price" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter price">
       @endif
     </div>
 </div>

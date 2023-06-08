@@ -35,7 +35,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="text-1xl text-gray-800 font-bold" >£{{ $product->cost}}</div>     
+                    <div class="text-1xl text-gray-800 font-bold" >£{{ $product->price}}</div>     
                 </div>
             </div>
             @endforeach

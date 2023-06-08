@@ -41,7 +41,7 @@ class ProductController extends Controller
             'category' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
-            'cost' => 'required',
+            'price' => 'required',
             'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
         ]);
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
                 'image' => null,
-                'cost' => $request->input('cost'),
+                'price' => $request->input('pprice'),
                 'user_id' => auth()->user()->id
             ]);
     
@@ -68,7 +68,7 @@ class ProductController extends Controller
                 'category_id' => $request->input('category'),            
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
-                'cost' => $request->input('cost'),
+                'price' => $request->input('price'),
                 'image' => $image,
                 'user_id' => auth()->user()->id
             ]);
@@ -99,7 +99,7 @@ class ProductController extends Controller
             'category' => 'required',
             'description' => 'required',
             'ingredients' => 'required',
-            'cost' => 'required',
+            'price' => 'required',
             'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
         ]);
 
@@ -111,7 +111,7 @@ class ProductController extends Controller
                 'category_id' => $request->input('category'),            
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
-                'cost' => $request->input('cost'),
+                'price' => $request->input('price'),
                 'user_id' => auth()->user()->id
             ]);     
         }
@@ -127,7 +127,7 @@ class ProductController extends Controller
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
                 'image' => $image,
-                'cost' => $request->input('cost'),
+                'price' => $request->input('price'),
                 'user_id' => auth()->user()->id
             ]); 
         }

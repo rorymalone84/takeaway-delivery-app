@@ -12,7 +12,7 @@
             </h1>
 
             <p class="font-bold text-l text-black pb-8">
-            Price: <span class="text-red-500">£ {{ $product->cost }}</span>
+            Price: <span class="text-red-500">£ {{ $product->price }}</span>
             </p>
 
             <h1 class="text-1xl underline text-gray-600 font-bold pb-4">
