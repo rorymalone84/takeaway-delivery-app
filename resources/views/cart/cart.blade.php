@@ -1,7 +1,7 @@
 @php
     $price = 0;
-    $delivery = 5
-    $total = $price + $delivery
+    $delivery = 5;
+    $total = $price + $delivery;
 @endphp
 
 <x-storefront>
