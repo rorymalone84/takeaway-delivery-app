@@ -6,7 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StoresController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreFrontController;
 
 /*
@@ -29,6 +30,9 @@ Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.t
 Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->name('delete.from.cart');
 Route::get('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+Route::get('/confirmation', [OrderController::class, 'confirmation'])->name('orders.confirmation');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -50,7 +54,7 @@ Route::middleware(['auth', 'role:chef'])->prefix('chef')->group(function(){
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
-    Route::resource('products', ProductsController::class, ['names' => 'products']);
+    Route::resource('products', ProductController::class, ['names' => 'products']);
     Route::resource('categories', CategoryController::class, ['names' => 'categories']);
     Route::resource('users', UserController::class, ['names' => 'users']);
     Route::resource('stores', StoresController::class, ['names' => 'stores']);
