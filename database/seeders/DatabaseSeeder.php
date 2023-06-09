@@ -21,8 +21,7 @@ class DatabaseSeeder extends Seeder
             'city' => 'Aberdeen',
             'postcode' => 'AB1954R',
             'phone' => 01224313131,
-            'latitude' => 57.151489283571486,
-            'longitude' =>  -2.153055090963397
+            'delivery_price' => 5.00,
         ]);
 
         $this->call(RoleSeeder::class);        

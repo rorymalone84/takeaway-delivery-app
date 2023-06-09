@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Session;
 
 class StoreFrontController extends Controller
 {
@@ -19,11 +20,11 @@ class StoreFrontController extends Controller
     public function showstore($id){
 
         $store = Store::findOrFail($id);
-        $nearestStore = session()->get('nearestStore', $store);
+        Session::put('nearestStore', $store->name);
+        Session::put('delivery_price', $store->delivery_price);
         return view('storefront.show', [
             'categories' => Category::with('products')->get(),
-            'store' => $store,
-            'nearestStore' => $nearestStore           
+            'store' => $store,          
         ]);
     }
 

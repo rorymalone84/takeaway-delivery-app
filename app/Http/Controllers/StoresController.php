@@ -33,8 +33,7 @@ class StoresController extends Controller
             'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
             'phone' => $request->input('phone'),
-            'latitude' => $request->input('latitude'),
-            'longitude' => $request->input('longitude')            
+            'delivery_price' => $request->input('delivery_price'),            
         ]);
 
         Session::flash('message', "The Store was Created");
@@ -58,8 +57,7 @@ class StoresController extends Controller
             'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
             'phone' => $request->input('phone'),
-            'latitude' => $request->input('latitude'),
-            'longitude' => $request->input('longitude')
+            'delivery_price' => $request->input('delivery_price'),
         ]);
 
         Session::flash('message', "The Store was updated");

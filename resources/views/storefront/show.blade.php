@@ -1,7 +1,7 @@
 <x-storefront>
     <div class="mx-auto w-4/5">
         <h1 class="text-2xl text-gray-800 font-bold pt-12 mb-8">
-            {{ $nearestStore->name }} Menu
+            {{ Session::get('nearestStore') }} Menu
         </h1>   
         <hr class="border-1 border-gray-300">
     </div>

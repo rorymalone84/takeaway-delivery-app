@@ -56,19 +56,11 @@
 
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <x-input-label value="location latitude"/>
+        <x-input-label value="delivery price"/>
         @if($store)
-          <input name="latitude" value="{{$store->latitude}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter location latitude" value="{{$store->latitude}}"/>       
+          <input name="delivery_price" value="{{$store->delivery_price}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter delivery price" value="{{$store->delivery_price}}"/>       
         @else
-          <input name="latitude" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter location latitude">
-        @endif
-    </div>
-    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-        <x-input-label value="location longitude"/>
-        @if($store)
-          <input name="longitude" value="{{$store->longitude}}" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter location longitude" value="{{$store->longitude}}"/>       
-        @else
-          <input name="longitude" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter location longitude">
+          <input name="delivery_price" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" type="number" placeholder="Enter delivery price">
         @endif
     </div>
 </div>

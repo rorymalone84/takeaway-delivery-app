@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('postcode');
             $table->string('phone');
-            $table->decimal('latitude')->nullable();
+            $table->decimal('delivery_price')->nullable();
             $table->decimal('longitude')->nullable();
             $table->timestamps();
         });
