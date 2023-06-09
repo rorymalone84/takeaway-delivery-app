@@ -5,33 +5,23 @@
 
 <x-storefront>
 <div class="md:mx-auto md:w-4/5">
-    <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-4">
+    <h1 class="text-center md:text-left text-5xl text-gray-800 font-bold pt-12 mb-4">
         Shopping Cart
     </h1>
     <hr class="border-1 border-gray-300">
 
-    <x-table.table :headers="['Name','Price','quantity','total','delete']">
+    <x-table.table :headers="['Name','Price','Quantity','Total','Delete']">
         @if (session('cartProducts'))
             @foreach (session('cartProducts') as $key => $value)
             <tbody class="bg-white divide-y divide-gray-200">
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div class="ml-4">
-                                <div class="text-sm text-right font-medium text-gray-900">
-                                    {{ $value['title'] }}
-                                </div>
-                            </div>
-                        </div>
-                    </td>
-
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span 
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            £ {{ $value['price'] }}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <x-table.table-data>
+                        {{ $value['title'] }}
+                    </x-table.table-data>
+                    <x-table.table-data>
+                        £ {{ $value['price'] }}
+                    </x-table.table-data>                    
+                    <x-table.table-data>
                         <form action="{{ route('update.cart', $key) }}" method="PUT">
                             @csrf
                             <select name="quantity" id="quantity"  onchange="this.form.submit()">
@@ -42,16 +32,15 @@
                                 @endfor
                             </select>
                         </form>
-                    </td>                            
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    </x-table.table-data>                            
+                    <x-table.table-data>   
                         <div class="text-sm text-gray-900" name="price" value="{{ $value['quantity'] * $value['price'] }}">
                             £ {{ $value['quantity'] * $value['price'] }} 
                         </div>
-                    </td>
-
-                    <td class="px-6 whitespace-nowrap text-left text-sm font-medium">
+                    </x-table.table-data>
+                    <x-table.table-data>
                         <a href="{{ route('delete.from.cart', $key) }}" role="button" class="text-red-600 hover:text-red-900">Delete</a>
-                    </td>
+                    </x-table.table-data>
                 </tr>
             </tbody>
 
@@ -71,42 +60,24 @@
     </x-table.table>
 
     <div class="mx-auto w-4/5">
-        <h1 class="text-2xl text-center text-gray-800 font-bold pt-4">
+        <h1 class="text-center text-2xl text-gray-800 font-bold pt-4">
             Total Cost
         </h1>
     </div>
 
-    <x-table.table :headers="['Price','Delivery','Total']">
     @if (session('cartProducts'))
+    <x-table.table :headers="['Price','Delivery','Total']">
         <tbody class="bg-white divide-y divide-gray-200">
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">
-                                £{{ $price }}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">
-                                £{{ $delivery}}
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                        <div class="ml-4">
-                            <div class="text-sm font-medium text-gray-900">
-                                £{{ $total }}
-                            </div>
-                        </div>
-                    </div>
-                </td>
+                <x-table.table-data>
+                    £{{ $price }}
+                </x-table.table-data>
+                <x-table.table-data>
+                    £{{ $delivery}}
+                </x-table.table-data>
+                <x-table.table-data>
+                    £{{ $total }}
+                </x-table.table-data>
             </tr>
         </tbody>
     @else
