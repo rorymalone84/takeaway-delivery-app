@@ -24,7 +24,7 @@
                     <x-table.table-data>
                         <form action="{{ route('update.cart', $key) }}" method="PUT">
                             @csrf
-                            <select name="quantity" id="quantity"  onchange="this.form.submit()">
+                            <select name="quantity" onchange="this.form.submit()">
                                 @for ($i = 1; $i <= 10; $i++)
                                     <option value="{{ $i }}" {{ $value['quantity'] == $i ? 'selected' : ''}}>
                                         {{ $i }} 
@@ -80,8 +80,7 @@
                 </x-table.table-data>
             </tr>
         </tbody>
-    @else
-                        
+    @else                        
     @endif
     </x-table.table>
 

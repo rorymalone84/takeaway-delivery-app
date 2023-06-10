@@ -45,16 +45,18 @@ class UserController extends Controller
             'email' => 'required|email',
             'address' => 'required',
             'postcode' => 'required',
+            'phone' => 'required',
             'store_id' => 'sometimes'
         ]);
         
         User::where('id',$user->id)
             ->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'address' => $request->input('address'),
-                'postcode' => $request->input('postcode'),
-                'store_id' => $request->input('store_id')
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'postcode' => $request->input('postcode'),
+            'phone' => $request->input('postcode'),
+            'store_id' => $request->input('store_id')
         ]);     
 
         return redirect('/users')->with('message', 'User updated!');

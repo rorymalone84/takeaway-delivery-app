@@ -31,6 +31,7 @@ Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->n
 Route::get('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
+Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/confirmation', [OrderController::class, 'confirmation'])->name('orders.confirmation');
 
 Route::get('/dashboard', function () {

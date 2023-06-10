@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->string('customer_name');
             $table->string('customer_address');
             $table->string('customer_email');
             $table->string('customer_city');
+            $table->string('customer_phone');
+            $table->string('store_id');
+            $table->string('status');
             $table->timestamps();
-
             $table->foreign('user_id')
             ->references('id')->on('users')->onDelete('cascade');
         });

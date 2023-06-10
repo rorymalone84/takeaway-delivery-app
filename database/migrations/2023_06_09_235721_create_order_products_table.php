@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_order', function (Blueprint $table) {
+        Schema::create('order_products', function (Blueprint $table) {
             $table->foreignId('order_id');
             $table->foreignId('product_id');
             $table->integer('quantity');
+            $table->integer('price');
             $table->foreign('order_id')
             ->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')
