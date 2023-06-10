@@ -47,7 +47,7 @@ class UserController extends Controller
             'postcode' => 'required',
             'phone' => 'required',
             'store_id' => 'sometimes'
-        ]);
+            ]);
         
         User::where('id',$user->id)
             ->update([
