@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,7 +22,11 @@ class UserController extends Controller
     public function create()
     {
         $user = new user();
-        return view('users.create', ['user' => $user]);
+        $stores = Store::all();
+        return view('users.create', [
+            'user' => $user,
+            'stores' => $stores
+        ]);
     }
 
     /**
@@ -30,8 +35,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        //$stores = Stores::all();
-        return view('users.edit', ['user' => $user]);
+        $stores = Store::all();
+        return view('users.edit', [
+            'user' => $user,
+            'stores' => $stores,
+        ]);
     }
 
     /**
@@ -48,7 +56,7 @@ class UserController extends Controller
             'phone' => 'required',
             'store_id' => 'sometimes'
         ]);
-        
+
         User::where('id',$user->id)
             ->update([
             'name' => $request->input('name'),
@@ -57,9 +65,9 @@ class UserController extends Controller
             'postcode' => $request->input('postcode'),
             'phone' => $request->input('postcode'),
             'store_id' => $request->input('store_id')
-        ]);     
+        ]);
 
-        return redirect('/users')->with('message', 'User updated!');
+        return redirect('/admin/users')->with('message', 'User updated!');
     }
 
     /**
@@ -68,7 +76,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        
+
         return redirect('/users')->with('message','User deleted');
     }
 }
