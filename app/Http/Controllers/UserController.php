@@ -52,6 +52,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'address' => 'required',
+            'city' => 'required',
             'postcode' => 'required',
             'phone' => 'required',
             'store_id' => 'sometimes'
@@ -62,8 +63,9 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
+            'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
-            'phone' => $request->input('postcode'),
+            'phone' => $request->input('phone'),
             'store_id' => $request->input('store_id')
         ]);
 

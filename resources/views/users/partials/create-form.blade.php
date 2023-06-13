@@ -31,6 +31,16 @@
                 placeholder="Enter user address" />
         @endif
     </div>
+    <div class="w-full md:w-1/2 px-3 mb-6">
+        <x-input-label value="city" />
+        @if ($user)
+            <x-text-input class="block mt-1 w-full" type="text" name="city" :value="$user->city"
+                placeholder="Enter your city" />
+        @else
+            <x-text-input class="block mt-1 w-full" type="text" name="city" :value="old('city')"
+                placeholder="Enter your city" />
+        @endif
+    </div>
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <x-input-label value="Postcode" />
         @if ($user)
