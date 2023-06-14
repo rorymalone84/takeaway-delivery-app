@@ -12,6 +12,7 @@ class CartController extends Controller
         return view('cart.cart');
     }
 
+
     public function addToCart($id){
         $product = Product::findOrFail($id);
         $cartProducts = session()->get('cartProducts', []);
@@ -29,11 +30,12 @@ class CartController extends Controller
                 'ingredients' => $product->ingredients,
                 'price' => $product->price,
                 'category_id' => $product->category_id
-            ];          
+            ];
         }
         session()->put('cartProducts',$cartProducts);
         return redirect()->back()->with('message','product added');
     }
+
 
     public function deleteFromCart(Request $request){
         if($request->id){
@@ -48,6 +50,7 @@ class CartController extends Controller
         }
     }
 
+
     public function updateCart(Request $request){
 
         if($request->id && $request->quantity){
@@ -57,5 +60,5 @@ class CartController extends Controller
         }
         return redirect()->back()->with('success', 'Cart Updated!');
     }
-    
+
 }

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Models\Order;
+use App\Models\Store;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Store;
 use Illuminate\Http\Request;
-use Session;
 
 class StoreFrontController extends Controller
 {
@@ -28,8 +29,18 @@ class StoreFrontController extends Controller
         ]);
     }
 
+
     public function showproduct($id){
 
         return view('storefront.showproduct', ['product' => Product::findOrFail($id)]);
+    }
+
+
+    public function confirmation($id){
+        $order_products = Order::find($id)->products;
+        return view('storefront.confirmation', [
+            'order' => Order::findOrFail($id),
+            'order_products' => $order_products
+        ]);
     }
 }

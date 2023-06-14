@@ -6,7 +6,9 @@ use Session;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -71,8 +73,15 @@ class OrderController extends Controller
         }
 
         Session::forget('cartProducts');
+        Session::forget('order');
         Session::save();
 
-        return view('/', $order);
+        $url = URL::temporarySignedRoute('storefront.confirmation', now()->addMinutes(5),[
+            'id'=>$order
+        ]);
+
+        return Redirect::to($url);
+
     }
+
 }
