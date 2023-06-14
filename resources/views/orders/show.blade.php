@@ -1,5 +1,5 @@
 @php
-    $total = 0;
+    $subTotal = 0;
 @endphp
 
 <x-admin-layout>
@@ -23,11 +23,11 @@
                 </x-table.table-data>
                 <x-table.table-data>
                     @php
-                        $subTotal = $order_product->price * $order_product->pivot->quantity;
+                        $itemTotal = $order_product->price * $order_product->pivot->quantity;
                     @endphp
-                    {{ $subTotal }}
+                    {{ $itemTotal }}
                     @php
-                        $total += $subTotal;
+                        $subTotal += $itemTotal;
                     @endphp
                 </x-table.table-data>
             </tr>
@@ -36,16 +36,18 @@
     <x-table.table :headers="['Items Cost', 'Delivery', 'Total']">
         <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
             <x-table.table-data>
-                {{ $total }}
+                {{ $subTotal }}
             </x-table.table-data>
             <x-table.table-data>
-                N/A
+                {{ $order->delivery_price }}
             </x-table.table-data>
             <x-table.table-data>
-                N/A
+                {{ $subTotal + $order->delivery_price }}
             </x-table.table-data>
         </tr>
     </x-table.table>
+
+
 
     <div class="text-center p-8">
         <div class="mt-10 flex items-center justify-center gap-x-6">

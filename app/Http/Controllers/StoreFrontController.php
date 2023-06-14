@@ -11,7 +11,7 @@ use Session;
 class StoreFrontController extends Controller
 {
     public function index(){
-        
+
         return view('storefront.index', [
                 'stores' => Store::all(),
         ]);
@@ -20,11 +20,11 @@ class StoreFrontController extends Controller
     public function showstore($id){
 
         $store = Store::findOrFail($id);
-        Session::put('nearestStore', $store->name);
-        Session::put('delivery_price', $store->delivery_price);
+        Session::put('nearestStore', $store);
+
         return view('storefront.show', [
             'categories' => Category::with('products')->get(),
-            'store' => $store,          
+            'store' => $store,
         ]);
     }
 

@@ -19,11 +19,16 @@ return new class extends Migration
             $table->string('customer_email');
             $table->string('customer_city');
             $table->string('customer_phone');
-            $table->string('store_id');
+            $table->foreignId('store_id');
+            $table->double('delivery_price');
+            $table->double('total_price');
             $table->string('status');
             $table->timestamps();
+
             $table->foreign('user_id')
             ->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('store_id')
+            ->references('id')->on('stores')->onDelete('cascade');
         });
     }
 

@@ -9,16 +9,16 @@
             Delivering from:
             <h3>
                 <div class="mb-2 uppercase">
-                    {{ $user->store->name }}
+                    {{ $user->store->name ?? Session::get('nearestStore')->name }}
                 </div>
                 <div class="mb-2">
-                    {{ $user->store->address_line_1 }}
+                    {{ $user->store->address_line_1 ?? Session::get('nearestStore')->address_line_1 }}
                 </div>
                 <div class="mb-2">
-                    {{ $user->store->address_line_2 }}
+                    {{ $user->store->address_line_2 ?? Session::get('nearestStore')->address_line_2 }}
                 </div>
                 <div class="mb-2">
-                    {{ $user->store->city }}
+                    {{ $user->store->city ?? Session::get('nearestStore')->city }}
                 </div>
             </h3>
         </h1>
@@ -100,7 +100,7 @@
                     @if ($user)
                         <input type="hidden" name="store_id" value="{{ $user->store_id }}" />
                     @else
-                        <input type="hidden" name="store_id" value="{{ session('nearestStore') }}" />
+                        <input type="hidden" name="store_id" value="{{ Session::get('nearestStore')->id }}" />
                     @endif
                 </div>
             </div>
@@ -112,12 +112,14 @@
         <hr class="border-1 border-gray-300">
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                Order Cost:
+                Order Cost:£
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                Delivery Cost:
+                <input type="hidden" name="delivery_price"
+                    value="{{ $user->store->delivery_price ?? Session::get('nearestStore')->delivery_price }}">
+                Delivery Cost: £{{ $user->store->delivery_price ?? Session::get('nearestStore')->delivery_price }}
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
