@@ -37,6 +37,7 @@ class StoreFrontController extends Controller
 
 
     public function confirmation($id){
+
         $order_products = Order::find($id)->products;
         return view('storefront.confirmation', [
             'order' => Order::findOrFail($id),

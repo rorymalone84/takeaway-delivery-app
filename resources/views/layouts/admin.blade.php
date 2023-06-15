@@ -97,7 +97,7 @@
                 </div>
             </header>
             @if (session()->has('message'))
-                <div x-data="{ showMessage: true }" x-show="showMessage">
+                <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
                         role="alert">
                         <strong class="font-bold">Holy smokes!</strong>

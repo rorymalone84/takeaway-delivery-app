@@ -1,15 +1,16 @@
 <?php
 
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\StoreFrontController;
-use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,14 +32,13 @@ Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->name('delete.from.cart');
 Route::get('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
+Route::get('/reordertocart/{id}', [CartController::class, 'reorder'])->name('reorder.to.cart');
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');
 Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/confirmation', [OrderController::class, 'confirmation'])->name('orders.confirmation');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/customer/dashboard',[CustomerController::class, 'dashboard'])->name('customer.dashboard');
 
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');

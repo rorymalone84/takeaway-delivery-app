@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Rules\Password;
 use App\Models\User;
 use App\Models\Store;
 use Illuminate\Http\Request;
@@ -49,10 +50,11 @@ class UserController extends Controller
     {
         $this->validate(request(),[
             //put fields to be validated here
-            'name' => 'required',
-            'email' => 'required|email',
-            'address' => 'required',
-            'city' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'address' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
             'postcode' => 'required',
             'phone' => 'required',
             'store_id' => 'sometimes'
