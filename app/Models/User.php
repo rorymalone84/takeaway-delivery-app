@@ -23,7 +23,9 @@ class User extends Authenticatable
         'name',
         'address',
         'postcode',
+        'city',
         'email',
+        'phone',
         'store_id',
         'password',
     ];
@@ -46,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function store(){
+        return $this->belongsTo(Store::class,'store_id');
+    }
+
 }

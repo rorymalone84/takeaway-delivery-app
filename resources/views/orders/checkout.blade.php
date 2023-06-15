@@ -1,11 +1,33 @@
 <x-storefront>
     <div class="mx-auto w-4/5">
-        <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-8">
+        <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-4">
             Checkout
         </h1>
         <hr class="border-1 border-gray-300">
 
-        <form method="POST" action="{{ route('orders.store') }}" class="ml-7 mr-7 mt-12">
+        <h1 class="text-2xl text-gray-800 font-bold pt-2 mb-4">
+            Delivering from:
+            <h3>
+                <div class="mb-2 uppercase">
+                    {{ $user->store->name ?? Session::get('nearestStore')->name }}
+                </div>
+                <div class="mb-2">
+                    {{ $user->store->address_line_1 ?? Session::get('nearestStore')->address_line_1 }}
+                </div>
+                <div class="mb-2">
+                    {{ $user->store->address_line_2 ?? Session::get('nearestStore')->address_line_2 }}
+                </div>
+                <div class="mb-2">
+                    {{ $user->store->city ?? Session::get('nearestStore')->city }}
+                </div>
+            </h3>
+        </h1>
+
+        <h1 class="text-2xl text-gray-800 font-bold pt-2 mb-4">
+            Delivering to...
+        </h1>
+
+        <form method="POST" action="{{ route('orders.store') }}" class="ml-7 mr-7 mt-8">
             @csrf
 
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -27,35 +49,56 @@
                             :value="$user->address" placeholder="Enter your address" />
                     @else
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_address"
+<<<<<<< HEAD
                             :value="old('customer_name')" placeholder="Enter your address" />
+=======
+                            :value="old('customer_address')" placeholder="Enter your address" />
+>>>>>>> development
                     @endif
                 </div>
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <x-input-label value="city" />
                     @if ($user)
+<<<<<<< HEAD
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_city"
                             :value="$user->city" placeholder="Enter your city" />
                     @else
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_city"
                             :value="old('customer_city')" placeholder="Enter your city" />
+=======
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_city" :value="$user->city"
+                            placeholder="Enter your city" />
+                    @else
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_city" :value="old('customer_city')"
+                            placeholder="Enter your city" />
+>>>>>>> development
                     @endif
                 </div>
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <x-input-label value="email" />
                     @if ($user)
+<<<<<<< HEAD
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_email"
                             :value="$user->city" placeholder="Enter your email" />
                     @else
                         <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_email"
                             :value="old('customer_email')" placeholder="Enter your email" />
+=======
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_postcode"
+                            :value="$user->postcode" placeholder="Enter your postcode" />
+                    @else
+                        <x-text-input id="title" class="block mt-1 w-full" type="text" name="customer_postcode"
+                            :value="old('customer_postcode')" placeholder="Enter your postcode" />
+>>>>>>> development
                     @endif
                 </div>
 
                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <x-input-label value="phone" />
                     @if ($user)
+<<<<<<< HEAD
                         <x-text-input id="title" class="block mt-1 w-full" type="number" name="customer_phone"
                             :value="$user->city" placeholder="Enter your phone number" />
                     @else
@@ -85,6 +128,57 @@
                 Total Cost:
             </div>
         </div>
+=======
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_phone" :value="$user->phone"
+                            placeholder="Enter your phone number" />
+                    @else
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_phone" :value="old('customer_phone')"
+                            placeholder="Enter your phone number" />
+                    @endif
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <x-input-label value="email" />
+                    @if ($user)
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_email" :value="$user->email"
+                            placeholder="Enter your email number" />
+                    @else
+                        <x-text-input class="block mt-1 w-full" type="text" name="customer_email" :value="old('customer_email')"
+                            placeholder="Enter your email number" />
+                    @endif
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <x-input-label value="Deliver from" />
+                    @if ($user)
+                        <input type="hidden" name="store_id" value="{{ $user->store_id }}" />
+                    @else
+                        <input type="hidden" name="store_id" value="{{ Session::get('nearestStore')->id }}" />
+                    @endif
+                </div>
+            </div>
+    </div>
+    <div class="mx-auto w-4/5">
+        <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-8">
+            Your order
+        </h1>
+        <hr class="border-1 border-gray-300">
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                Order Cost:£
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <input type="hidden" name="delivery_price"
+                    value="{{ $user->store->delivery_price ?? Session::get('nearestStore')->delivery_price }}">
+                Delivery Cost: £{{ $user->store->delivery_price ?? Session::get('nearestStore')->delivery_price }}
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                Total Cost:
+            </div>
+        </div>
+>>>>>>> development
     </div>
     @if ($errors)
         @foreach ($errors->all() as $error)

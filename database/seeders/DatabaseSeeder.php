@@ -24,25 +24,33 @@ class DatabaseSeeder extends Seeder
             'delivery_price' => 5.00,
         ]);
 
-        $this->call(RoleSeeder::class);        
-        
+        $this->call(RoleSeeder::class);
+
         \App\Models\User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
+            'address' => 'Lang Stracht',
+            'postcode' => 'AB10 ABZ',
+            'city' => 'aberdeen',
+            'store_id' => 1,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        ])->assignRole('admin');
+        ]);
 
         User::factory()->create([
             'name' => 'customer',
             'email' => 'customer@customer.com',
+            'city' => 'aberdeen',
+            'store_id' => 1,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('customer');
 
         User::factory()->create([
             'name' => 'chef',
             'email' => 'chef@chef.com',
+            'city' => 'aberdeen',
+            'store_id' => 1,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ])->assignRole('chef');
 

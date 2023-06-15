@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Session;
 
 class CartController extends Controller
 {
     public function cart(){
         return view('cart.cart');
     }
+
 
     public function addToCart($id){
         $product = Product::findOrFail($id);
@@ -29,11 +31,12 @@ class CartController extends Controller
                 'ingredients' => $product->ingredients,
                 'price' => $product->price,
                 'category_id' => $product->category_id
-            ];          
+            ];
         }
         session()->put('cartProducts',$cartProducts);
         return redirect()->back()->with('message','product added');
     }
+
 
     public function deleteFromCart(Request $request){
         if($request->id){
@@ -48,6 +51,7 @@ class CartController extends Controller
         }
     }
 
+
     public function updateCart(Request $request){
 
         if($request->id && $request->quantity){
@@ -57,5 +61,36 @@ class CartController extends Controller
         }
         return redirect()->back()->with('success', 'Cart Updated!');
     }
-    
+
+
+    public function reorder($id){
+        $order_products = Order::findOrFail($id)->with('products')->get();
+
+        foreach ($order_products as $order_product){
+            foreach($order_product->products as $product){
+                if(isset($cartProducts['id'])){
+                    $cartProducts['quantity']++;
+                }
+                else{
+                    $cartProducts[] = [
+                        'id' => $product->id,
+                        'quantity' => $product->pivot->quantity,
+                        'title' => $product->title,
+                        'description' => $product->description,
+                        'image' => $product->image,
+                        'ingredients' => $product->ingredients,
+                        'price' => $product->price,
+                        'category_id' => $product->category_id
+                    ];
+                }
+            }
+        }
+
+        unset($cartProducts[0]);
+        session()->put('cartProducts',$cartProducts);
+
+        Session::flash('message', "Re-order in the cart");
+
+        return redirect()->back();
+    }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class StoresController extends Controller
 {
-    
+
     public function index()
     {
         return view('stores.index', ['stores' => Store::all()]);
@@ -33,7 +33,7 @@ class StoresController extends Controller
             'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
             'phone' => $request->input('phone'),
-            'delivery_price' => $request->input('delivery_price'),            
+            'delivery_price' => $request->input('delivery_price'),
         ]);
 
         Session::flash('message', "The Store was Created");
@@ -43,7 +43,7 @@ class StoresController extends Controller
 
     public function edit(Store $store)
     {
-        
+
         return view('stores.edit', ['store' => $store]);
     }
 

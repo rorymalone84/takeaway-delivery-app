@@ -31,6 +31,19 @@
                 placeholder="Enter user address" />
         @endif
     </div>
+<<<<<<< HEAD
+=======
+    <div class="w-full md:w-1/2 px-3 mb-6">
+        <x-input-label value="city" />
+        @if ($user)
+            <x-text-input class="block mt-1 w-full" type="text" name="city" :value="$user->city"
+                placeholder="Enter your city" />
+        @else
+            <x-text-input class="block mt-1 w-full" type="text" name="city" :value="old('city')"
+                placeholder="Enter your city" />
+        @endif
+    </div>
+>>>>>>> development
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <x-input-label value="Postcode" />
         @if ($user)
@@ -44,6 +57,7 @@
 </div>
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+<<<<<<< HEAD
         <x-input-label value="Nearest Store" />
         @if ($user)
             <x-text-input class="block mt-1 w-full" type="number" name="store_id" :value="$user->store_id" />
@@ -51,6 +65,33 @@
             <x-text-input class="block mt-1 w-full" type="number" name="store_id" :value="old('store_id')" />
         @endif
     </div>
+=======
+        <x-input-label value="phone" />
+        @if ($user)
+            <x-text-input class="block mt-1 w-full" type="text" name="phone" :value="$user->phone"
+                placeholder="Enter phone number" />
+        @else
+            <x-text-input class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
+                placeholder="Enter phone number" />
+        @endif
+    </div>
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        <x-input-label value="Nearest Store" />
+        <select name="store_id"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-800 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @if ($user)
+                <option name="store_id" value="{{ $user->store_id }}">{{ $user->store->name ?? null }}</option>
+                @foreach ($stores as $store)
+                    <option name="store_id" value="{{ $store->id }}">{{ $store->name }}</option>
+                @endforeach
+            @else
+                @foreach ($stores as $store)
+                    <option name="store_id" value="{{ $store->id }}">{{ $store->name }}</option>
+                @endforeach
+            @endif
+        </select>
+    </div>
+>>>>>>> development
 </div>
 
 @if ($errors)

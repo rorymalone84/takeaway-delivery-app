@@ -36,10 +36,17 @@
         <x-input-label value="city" />
         @if ($store)
             <x-text-input class="block mt-1 w-full" type="text" name="city" :value="$store->city"
+<<<<<<< HEAD
                 placeholder="Enter product city" />
         @else
             <x-text-input class="block mt-1 w-full" type="text" name="city" :value="old('city')"
                 placeholder="Enter product city" />
+=======
+                placeholder="Enter city" />
+        @else
+            <x-text-input class="block mt-1 w-full" type="text" name="city" :value="old('city')"
+                placeholder="Enter city" />
+>>>>>>> development
         @endif
     </div>
 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Rules\Password;
 use App\Models\User;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,7 +23,11 @@ class UserController extends Controller
     public function create()
     {
         $user = new user();
-        return view('users.create', ['user' => $user]);
+        $stores = Store::all();
+        return view('users.create', [
+            'user' => $user,
+            'stores' => $stores
+        ]);
     }
 
     /**
@@ -30,8 +36,11 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        //$stores = Stores::all();
-        return view('users.edit', ['user' => $user]);
+        $stores = Store::all();
+        return view('users.edit', [
+            'user' => $user,
+            'stores' => $stores,
+        ]);
     }
 
     /**
@@ -41,25 +50,28 @@ class UserController extends Controller
     {
         $this->validate(request(),[
             //put fields to be validated here
-            'name' => 'required',
-            'email' => 'required|email',
-            'address' => 'required',
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Password::defaults()],
+            'address' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
             'postcode' => 'required',
             'phone' => 'required',
             'store_id' => 'sometimes'
-            ]);
-        
+        ]);
+
         User::where('id',$user->id)
             ->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
+            'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
-            'phone' => $request->input('postcode'),
+            'phone' => $request->input('phone'),
             'store_id' => $request->input('store_id')
-        ]);     
+        ]);
 
-        return redirect('/users')->with('message', 'User updated!');
+        return redirect('/admin/users')->with('message', 'User updated!');
     }
 
     /**
@@ -68,7 +80,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        
+
         return redirect('/users')->with('message','User deleted');
     }
 }
