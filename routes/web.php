@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
@@ -38,25 +39,19 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.chec
 Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/confirmation', [OrderController::class, 'confirmation'])->name('orders.confirmation');
 
-Route::get('/customer/dashboard',[CustomerController::class, 'dashboard'])->name('customer.dashboard');
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth', 'role:admin'])->name('admin.dashboard');
+Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 
 Route::get('/chef/dashboard', function () {
     return view('chef.dashboard');
 })->middleware(['auth', 'role:chef'])->name('chef.dashboard');
 
-Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function(){
-
+Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function () {
 });
 
-Route::middleware(['auth', 'role:chef'])->prefix('chef')->group(function(){
-
+Route::middleware(['auth', 'role:chef'])->prefix('chef')->group(function () {
 });
 
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('products', ProductController::class, ['names' => 'products']);
     Route::resource('categories', CategoryController::class, ['names' => 'categories']);
     Route::resource('users', UserController::class, ['names' => 'users']);
@@ -64,6 +59,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function(){
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 Route::middleware('auth')->group(function () {
@@ -72,4 +68,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

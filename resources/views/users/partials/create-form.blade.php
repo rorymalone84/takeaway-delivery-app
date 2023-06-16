@@ -31,8 +31,6 @@
                 placeholder="Enter user address" />
         @endif
     </div>
-<<<<<<< HEAD
-=======
     <div class="w-full md:w-1/2 px-3 mb-6">
         <x-input-label value="city" />
         @if ($user)
@@ -43,7 +41,6 @@
                 placeholder="Enter your city" />
         @endif
     </div>
->>>>>>> development
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         <x-input-label value="Postcode" />
         @if ($user)
@@ -57,15 +54,6 @@
 </div>
 <div class="flex flex-wrap -mx-3 mb-6">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-<<<<<<< HEAD
-        <x-input-label value="Nearest Store" />
-        @if ($user)
-            <x-text-input class="block mt-1 w-full" type="number" name="store_id" :value="$user->store_id" />
-        @else
-            <x-text-input class="block mt-1 w-full" type="number" name="store_id" :value="old('store_id')" />
-        @endif
-    </div>
-=======
         <x-input-label value="phone" />
         @if ($user)
             <x-text-input class="block mt-1 w-full" type="text" name="phone" :value="$user->phone"
@@ -91,7 +79,6 @@
             @endif
         </select>
     </div>
->>>>>>> development
 </div>
 
 @if ($errors)

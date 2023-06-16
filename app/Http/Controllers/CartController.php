@@ -64,11 +64,11 @@ class CartController extends Controller
 
 
     public function reorder($id){
-        $order_products = Order::findOrFail($id)->with('products')->get();
+        $order_products = Order::where('id',$id)->with('products')->get();
 
         foreach ($order_products as $order_product){
             foreach($order_product->products as $product){
-                if(isset($cartProducts['id'])){
+                if(isset($cartProducts['quantity'])){
                     $cartProducts['quantity']++;
                 }
                 else{
@@ -86,7 +86,7 @@ class CartController extends Controller
             }
         }
 
-        unset($cartProducts[0]);
+        //unset($cartProducts[0]);
         session()->put('cartProducts',$cartProducts);
 
         Session::flash('message', "Re-order in the cart");

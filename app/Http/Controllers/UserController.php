@@ -48,10 +48,10 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $this->validate(request(),[
+        $this->validate(request(), [
             //put fields to be validated here
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Password::defaults()],
             'address' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
@@ -60,16 +60,16 @@ class UserController extends Controller
             'store_id' => 'sometimes'
         ]);
 
-        User::where('id',$user->id)
+        User::where('id', $user->id)
             ->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'address' => $request->input('address'),
-            'city' => $request->input('city'),
-            'postcode' => $request->input('postcode'),
-            'phone' => $request->input('phone'),
-            'store_id' => $request->input('store_id')
-        ]);
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'address' => $request->input('address'),
+                'city' => $request->input('city'),
+                'postcode' => $request->input('postcode'),
+                'phone' => $request->input('phone'),
+                'store_id' => $request->input('store_id')
+            ]);
 
         return redirect('/admin/users')->with('message', 'User updated!');
     }
@@ -81,6 +81,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect('/users')->with('message','User deleted');
+        return redirect(route('users.index'))->with('message', 'User deleted');
     }
 }
