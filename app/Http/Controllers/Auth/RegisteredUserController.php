@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
             'city' => $request->input('city'),
             'postcode' => $request->input('postcode'),
             'phone' => $request->input('phone'),
-        ]);
+        ])->assignRole('customer');;
 
         event(new Registered($user));
 
