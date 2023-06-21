@@ -24,8 +24,14 @@
                     @if (Route::has('login'))
                         <div class="sm:fixed sm:top-0 sm:left-0 p-6 text-right z-10">
                             @auth
-                                <a href="{{ url('/dashboard') }}"
-                                    class="font-semibold text-gray-200 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{ Auth::user()->name }}</a>
+                                @if (Auth::user()->hasRole('admin'))
+                                    <a href="{{ url('/admin/dashboard') }}"
+                                        class="font-semibold text-gray-200 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{ Auth::user()->name }}</a>
+                                @endif
+                                @if (Auth::user()->hasRole('customer'))
+                                    <a href="{{ url('/customer/dashboard') }}"
+                                        class="font-semibold text-gray-200 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{ Auth::user()->name }}</a>
+                                @endif
                             @else
                                 <a href="{{ route('login') }}"
                                     class="font-semibold text-gray-200 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log

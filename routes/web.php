@@ -39,17 +39,10 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.chec
 Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/confirmation', [OrderController::class, 'confirmation'])->name('orders.confirmation');
 
-Route::get('/customer/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
-
-Route::get('/chef/dashboard', function () {
-    return view('chef.dashboard');
-})->middleware(['auth', 'role:chef'])->name('chef.dashboard');
-
 Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function () {
+    Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 });
 
-Route::middleware(['auth', 'role:chef'])->prefix('chef')->group(function () {
-});
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('products', ProductController::class, ['names' => 'products']);
