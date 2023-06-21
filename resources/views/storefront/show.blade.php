@@ -23,8 +23,7 @@
                                     class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer">
                                     <div
                                         class="flex h-full w-full items-center justify-center rounded-full text-xl hover:bg-gray-50">
-                                        <a href="{{ route('add.to.cart', $product->id) }}" event.preventDefault()
-                                            @click="return false;"
+                                        <a href="{{ route('add.to.cart', $product->id) }}"
                                             class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
                                             +
                                         </a>
