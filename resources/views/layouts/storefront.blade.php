@@ -27,9 +27,10 @@
 </body>
 
 <footer class="w-full text-center p-4 sticky bottom-0">
-    @if (session()->has('message'))
-        <x-success />
-    @endif
+    <div id="message"\>
+        @if (session()->has('message'))
+            <x-success />
+        @endif
 </footer>
 
 </html>

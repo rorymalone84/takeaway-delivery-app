@@ -159,6 +159,7 @@
                         <span
                             class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-pink-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-pink-500">
+
                         </span>
                     @endif
                 </span>

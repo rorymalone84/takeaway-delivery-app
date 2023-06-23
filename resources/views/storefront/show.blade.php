@@ -23,7 +23,7 @@
                                     class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-white p-2 text-brand-500 hover:cursor-pointer">
                                     <div
                                         class="flex h-full w-full items-center justify-center rounded-full text-xl hover:bg-gray-50">
-                                        <a href="{{ route('add.to.cart', $product->id) }}"
+                                        <a id="add" data-id="{{ $product->id }}"
                                             class="px-6 py-2 text-l uppercase text-white font-bold bg-blue-600 rounded-full w-full">
                                             +
                                         </a>
@@ -47,3 +47,29 @@
         @endforeach
     </div>
 </x-storefront>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //add to basket
+    $(document).ready(function() {
+        $(document).on("click", "#add", function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            $.ajax({
+                url: `/addtocart/` + id,
+                type: 'GET',
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('#message').html(data).fadeIn('slow');
+                    $('#message').html("Product Added").fadeIn(
+                        'slow') //also show a success message
+                    $('#message').delay(5000).fadeOut('slow');
+                    alert('product added');
+                    $("#error").text(data);
+                }
+            });
+        });
+    });
+</script>
