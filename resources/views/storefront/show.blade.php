@@ -47,29 +47,3 @@
         @endforeach
     </div>
 </x-storefront>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    //add to basket
-    $(document).ready(function() {
-        $(document).on("click", "#add", function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            $.ajax({
-                url: `/addtocart/` + id,
-                type: 'GET',
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    $('#message').html(data).fadeIn('slow');
-                    $('#message').html("Product Added").fadeIn(
-                        'slow') //also show a success message
-                    $('#message').delay(5000).fadeOut('slow');
-                    alert('product added');
-                    $("#error").text(data);
-                }
-            });
-        });
-    });
-</script>

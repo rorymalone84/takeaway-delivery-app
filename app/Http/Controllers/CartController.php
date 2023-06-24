@@ -50,7 +50,7 @@ class CartController extends Controller
                 session()->put('cartProducts', $cartProducts);
             }
 
-            return redirect()->back()->with('message', 'product deleted');
+            return response()->json(['success' => true]);
         }
     }
 

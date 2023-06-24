@@ -41,7 +41,7 @@
                                 </div>
                             </x-table.table-data>
                             <x-table.table-data>
-                                <a href="{{ route('delete.from.cart', $key) }}" role="button"
+                                <a role="button" id="delete" data-id="{{ $value['id'] }}"
                                     class="text-red-600 hover:text-red-900">Delete</a>
                             </x-table.table-data>
                         </tr>
