@@ -22,8 +22,6 @@
                                 £ {{ $value['price'] }}
                             </x-table.table-data>
                             <x-table.table-data>
-
-
                                 <select id="quantity" data-id="{{ $value['id'] }}">
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="{{ $i }}"
@@ -32,7 +30,6 @@
                                         </option>
                                     @endfor
                                 </select>
-
                             </x-table.table-data>
                             <x-table.table-data>
                                 <div class="text-sm text-gray-900" name="price"

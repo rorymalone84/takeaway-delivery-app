@@ -47,9 +47,12 @@
                     id: id
                 },
                 success: function(data) {
+                    $('#message').addClass(
+                        "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    );
                     $('#message').html(data).fadeIn('slow');
                     $('#message').html("Product Added").fadeIn(
-                        'slow') //also show a success message
+                        'slow');
                     $('#message').delay(5000).fadeOut('slow');
                     $("#error").text(data);
                 }
@@ -68,9 +71,12 @@
                     id: id
                 },
                 success: function(data) {
+                    $('#message').addClass(
+                        "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    );
                     $('#message').html(data).fadeIn('slow');
                     $('#message').html("Product Removed").fadeIn(
-                        'slow') //also show a success message
+                        'slow');
                     $('#message').delay(5000).fadeOut('slow');
                     currentRow.remove();
                     $("#error").text(data);
@@ -92,7 +98,6 @@
                     quantity: ele.parents("tr").find("#quantity").val()
                 },
                 success: function(response) {
-                    console.log('quantity updated')
                     window.location.reload();
                 }
             });

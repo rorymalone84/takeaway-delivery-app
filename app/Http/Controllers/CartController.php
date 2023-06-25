@@ -63,7 +63,6 @@ class CartController extends Controller
             $cartProducts[$request->id]["quantity"] = $request->quantity;
             session()->put('cartProducts', $cartProducts);
         }
-
         return response()->json(['success' => true]);
     }
 
@@ -91,6 +90,7 @@ class CartController extends Controller
             }
         }
 
+        //unset($cartProducts[0]);
         session()->put('cartProducts', $cartProducts);
 
         Session::flash('message', "Re-order in the cart");
