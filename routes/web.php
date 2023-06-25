@@ -32,7 +32,7 @@ Route::get('/storefront/confirmation/{id}', [StoreFrontController::class, 'confi
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/addtocart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
 Route::get('/deletefromcart/{id}', [CartController::class, 'deleteFromCart'])->name('delete.from.cart');
-Route::get('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
+Route::patch('/updatecart/{id}', [CartController::class, 'updateCart'])->name('update.cart');
 Route::get('/reordertocart/{id}', [CartController::class, 'reorder'])->name('reorder.to.cart');
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('orders.checkout');

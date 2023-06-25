@@ -22,17 +22,17 @@
                                 £ {{ $value['price'] }}
                             </x-table.table-data>
                             <x-table.table-data>
-                                <form action="{{ route('update.cart', $key) }}" method="PUT">
-                                    @csrf
-                                    <select name="quantity" onchange="this.form.submit()">
-                                        @for ($i = 1; $i <= 10; $i++)
-                                            <option value="{{ $i }}"
-                                                {{ $value['quantity'] == $i ? 'selected' : '' }}>
-                                                {{ $i }}
-                                            </option>
-                                        @endfor
-                                    </select>
-                                </form>
+
+
+                                <select id="quantity" data-id="{{ $value['id'] }}">
+                                    @for ($i = 1; $i <= 10; $i++)
+                                        <option value="{{ $i }}"
+                                            {{ $value['quantity'] == $i ? 'selected' : '' }}>
+                                            {{ $i }}
+                                        </option>
+                                    @endfor
+                                </select>
+
                             </x-table.table-data>
                             <x-table.table-data>
                                 <div class="text-sm text-gray-900" name="price"

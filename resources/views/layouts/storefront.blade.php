@@ -51,14 +51,12 @@
                     $('#message').html("Product Added").fadeIn(
                         'slow') //also show a success message
                     $('#message').delay(5000).fadeOut('slow');
-                    alert('product added');
                     $("#error").text(data);
                 }
             });
         });
-    });
 
-    $(document).ready(function() {
+        //remove from basket
         $(document).on("click", "#delete", function(e) {
             e.preventDefault();
             var id = $(this).data('id');
@@ -79,7 +77,27 @@
                 }
             });
         });
-    });
+
+        //update basket quantity
+        $(document).on("change", "#quantity", function(e) {
+            e.preventDefault();
+            var ele = $(this);
+            var id = $(this).data('id');
+            $.ajax({
+                url: `/updatecart/` + id,
+                method: "patch",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: id,
+                    quantity: ele.parents("tr").find("#quantity").val()
+                },
+                success: function(response) {
+                    console.log('quantity updated')
+                    window.location.reload();
+                }
+            });
+        });
+    })
 </script>
 
 </html>

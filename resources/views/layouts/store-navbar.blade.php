@@ -1,4 +1,4 @@
-<nav x-data="accordion(6)"
+<nav x-data="accordion(6)" x-cloak
     class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 tracking-wide  shadow-md bg-white bg-opacity-90 md:py-8 md:px-8 lg:px-14">
     <!-- Left nav -->
     <div class="flex items-center">
