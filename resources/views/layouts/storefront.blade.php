@@ -47,6 +47,14 @@
                     id: id
                 },
                 success: function(data) {
+                    //update quantity total
+                    var totalQuantity = data.totalQuantity;
+                    //update data on mobile screen navbar
+                    $('#totalQuantitySM').text(totalQuantity);
+                    //update data on medium and higher screen navbar
+                    $('#totalQuantityMD').text(totalQuantity);
+
+                    //notification of product being added
                     $('#message').addClass(
                         "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
                     );
@@ -58,6 +66,7 @@
                 }
             });
         });
+
 
         //remove from basket
         $(document).on("click", "#delete", function(e) {
@@ -71,6 +80,14 @@
                     id: id
                 },
                 success: function(data) {
+                    //update quantity total
+                    var totalQuantity = data.totalQuantity;
+                    //update data on mobile screen navbar
+                    $('#totalQuantitySM').text(totalQuantity);
+                    //update data on medium and higher screen navbar
+                    $('#totalQuantityMD').text(totalQuantity);
+
+                    //notification of product being deleted
                     $('#message').addClass(
                         "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
                     );
@@ -83,6 +100,7 @@
                 }
             });
         });
+
 
         //update basket quantity
         $(document).on("change", "#quantity", function(e) {
@@ -99,6 +117,12 @@
                 },
                 success: function(response) {
                     window.location.reload();
+                    //update quantity total
+                    var totalQuantity = data.totalQuantity;
+                    //update data on mobile screen navbar
+                    $('#totalQuantitySM').text(totalQuantity);
+                    //update data on medium and higher screen navbar
+                    $('#totalQuantityMD').text(totalQuantity);
                 }
             });
         });

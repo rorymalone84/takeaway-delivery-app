@@ -43,7 +43,6 @@ Route::middleware(['auth', 'role:customer'])->prefix('customer')->group(function
     Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
 });
 
-
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('products', ProductController::class, ['names' => 'products']);
     Route::resource('categories', CategoryController::class, ['names' => 'categories']);

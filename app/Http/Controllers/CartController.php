@@ -34,9 +34,21 @@ class CartController extends Controller
                 'category_id' => $product->category_id
             ];
         }
+
+        //adds product to the cart
         session()->put('cartProducts', $cartProducts);
 
-        return response()->json(['success' => true,]);
+        //get/update cart quantity
+        $totalQuantity = 0;
+        foreach (session('cartProducts') as $product) {
+            $totalQuantity +=  $product['quantity'];
+        }
+
+        //sets cart quantity total for page refreshes
+        session()->put('quantityTotal', $totalQuantity);
+
+        //returns respone to jquery on storefront.blade.
+        return response()->json(['success' => true, 'totalQuantity' => $totalQuantity]);
     }
 
 
@@ -50,7 +62,16 @@ class CartController extends Controller
                 session()->put('cartProducts', $cartProducts);
             }
 
-            return response()->json(['success' => true]);
+            //get/update cart quantity
+            $totalQuantity = 0;
+            foreach (session('cartProducts') as $product) {
+                $totalQuantity +=  $product['quantity'];
+            }
+
+            //sets cart quantity total for page refreshes
+            session()->put('quantityTotal', $totalQuantity);
+
+            return response()->json(['success' => true, 'totalQuantity' => $totalQuantity]);
         }
     }
 
@@ -63,7 +84,17 @@ class CartController extends Controller
             $cartProducts[$request->id]["quantity"] = $request->quantity;
             session()->put('cartProducts', $cartProducts);
         }
-        return response()->json(['success' => true]);
+
+        //get/update cart quantity
+        $totalQuantity = 0;
+        foreach (session('cartProducts') as $product) {
+            $totalQuantity +=  $product['quantity'];
+        }
+
+        //sets cart quantity total for page refreshes
+        session()->put('quantityTotal', $totalQuantity);
+
+        return response()->json(['success' => true, 'totalQuantity' => $totalQuantity]);
     }
 
 
