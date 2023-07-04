@@ -1,8 +1,15 @@
 <x-admin-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Users') }}
-        </h2>
+        <div class="grid grid-rows-1 grid-flow-col justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Users') }}
+            </h2>
+            <form action="{{ route('users.index') }}" method="GET" role="search">
+                @csrf
+                <x-text-input name="search" placeholder=" Search User" />
+                <a href="/admin/users" class="dark:text-gray-50">clear</a>
+            </form>
+        </div>
     </x-slot>
 
     <x-table.table :headers="['name', 'email', 'address', 'action']">
@@ -24,4 +31,5 @@
             </tr>
         @endforeach
     </x-table.table>
+    {{ $users->onEachSide(5)->links() }}
 </x-admin-layout>

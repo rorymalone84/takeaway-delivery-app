@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index', ['products' => Product::all()]);
+        return view('products.index', ['products' => Product::orderBy('title')->filter(request(['search']))->paginate(10)]);
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(),[
+        $this->validate(request(), [
             //put fields to be validated here
             'title' => 'required',
             'category' => 'required',
@@ -45,27 +45,26 @@ class ProductController extends Controller
             'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
         ]);
 
-        if(empty($request['image'])){
+        if (empty($request['image'])) {
             Product::create([
                 'title' => $request->input('title'),
-                'category_id' => $request->input('category'),            
+                'category_id' => $request->input('category'),
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
                 'image' => null,
                 'price' => $request->input('pprice'),
                 'user_id' => auth()->user()->id
             ]);
-    
+
             return view('products.index', ['products' => Product::all()])->with('message', 'Category updated!');
-            
-        } else{
+        } else {
             //if image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
-            $image = time().'.'.$request->image->extension();    
+            $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $image);
 
             Product::create([
                 'title' => $request->input('title'),
-                'category_id' => $request->input('category'),            
+                'category_id' => $request->input('category'),
                 'description' => $request->input('description'),
                 'ingredients' => $request->input('ingredients'),
                 'price' => $request->input('price'),
@@ -93,7 +92,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $validate = $this->validate(request(),[
+        $validate = $this->validate(request(), [
             //put fields to be validated here
             'title' => 'required',
             'category' => 'required',
@@ -104,36 +103,35 @@ class ProductController extends Controller
         ]);
 
         //if image upload isn't used, keep the previous image path
-        if(empty($request['image'])){            
-            Product::where('id',$product->id)
-            ->update([
-                'title' => $request->input('title'),
-                'category_id' => $request->input('category'),            
-                'description' => $request->input('description'),
-                'ingredients' => $request->input('ingredients'),
-                'price' => $request->input('price'),
-                'user_id' => auth()->user()->id
-            ]);     
-        }
-        else{
+        if (empty($request['image'])) {
+            Product::where('id', $product->id)
+                ->update([
+                    'title' => $request->input('title'),
+                    'category_id' => $request->input('category'),
+                    'description' => $request->input('description'),
+                    'ingredients' => $request->input('ingredients'),
+                    'price' => $request->input('price'),
+                    'user_id' => auth()->user()->id
+                ]);
+        } else {
             //else' image is uploaded
-            $image = time().'.'.$request->image->extension();     
+            $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $image);
 
-            Product::where('id',$product->id)
-            ->update([
-                'title' => $request->input('title'),
-                'category_id' => $request->input('category'),            
-                'description' => $request->input('description'),
-                'ingredients' => $request->input('ingredients'),
-                'image' => $image,
-                'price' => $request->input('price'),
-                'user_id' => auth()->user()->id
-            ]); 
+            Product::where('id', $product->id)
+                ->update([
+                    'title' => $request->input('title'),
+                    'category_id' => $request->input('category'),
+                    'description' => $request->input('description'),
+                    'ingredients' => $request->input('ingredients'),
+                    'image' => $image,
+                    'price' => $request->input('price'),
+                    'user_id' => auth()->user()->id
+                ]);
         }
 
         Session::flash('message', "The product was Updated");
-        return view('products.index', ['products' => Product::all()])->with('message', 'Product updated!');        
+        return view('products.index', ['products' => Product::all()])->with('message', 'Product updated!');
     }
 
     /**
