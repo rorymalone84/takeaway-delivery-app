@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
+use App\Http\Requests\StoreUserRequest;
 use App\Providers\RouteServiceProvider;
 use JustSteveKing\LaravelPostcodes\Rules\Postcode;
 use JustSteveKing\LaravelPostcodes\Service\PostcodeService;
@@ -30,19 +31,8 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'email' => 'required|email',
-            'address' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'postcode' => ['required', new Postcode(resolve(PostcodeService::class))],
-            'phone' => 'required',
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

@@ -6,6 +6,7 @@ use Rules\Password;
 use App\Models\User;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserRequest;
 use JustSteveKing\LaravelPostcodes\Rules\Postcode;
 
 class UserController extends Controller
@@ -47,20 +48,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(StoreUserRequest $request, User $user)
     {
-        $this->validate(request(), [
-            //put fields to be validated here
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', Password::defaults()],
-            'address' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'postcode' => ['required', new Postcode(resolve(PostcodeService::class))],
-            'phone' => 'required',
-            'store_id' => 'sometimes'
-        ]);
-
         User::where('id', $user->id)
             ->update([
                 'name' => $request->input('name'),

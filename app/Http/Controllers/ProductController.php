@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Services\ProductService;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -23,54 +23,18 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //The $product variable is just to pass an empty expected variable for the reusable products create/update form.
-        $product = new Product();
-        //the $categories collection is required to pass existing categories into the products form as a dropdown option.
-        $categories = Category::all();
-        return view('products.create', ['categories' => $categories, 'product' => $product]);
+        return view('products.create', ['categories' => Category::all(), 'product' => new Product()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request, ProductService $productService)
     {
-        $this->validate(request(), [
-            //put fields to be validated here
-            'title' => 'required',
-            'category' => 'required',
-            'description' => 'required',
-            'ingredients' => 'required',
-            'price' => 'required',
-            'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
-        ]);
-
         if (empty($request['image'])) {
-            Product::create([
-                'title' => $request->input('title'),
-                'category_id' => $request->input('category'),
-                'description' => $request->input('description'),
-                'ingredients' => $request->input('ingredients'),
-                'image' => null,
-                'price' => $request->input('pprice'),
-                'user_id' => auth()->user()->id
-            ]);
-
-            return view('products.index', ['products' => Product::all()])->with('message', 'Category updated!');
+            $productService->storeWithoutImage($request);
         } else {
-            //if image is uploaded, send the image name given to the $imageUploaded to the DB image_path attribute
-            $image = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $image);
-
-            Product::create([
-                'title' => $request->input('title'),
-                'category_id' => $request->input('category'),
-                'description' => $request->input('description'),
-                'ingredients' => $request->input('ingredients'),
-                'price' => $request->input('price'),
-                'image' => $image,
-                'user_id' => auth()->user()->id
-            ]);
+            $productService->storeWithImage($request);
         }
 
         Session::flash('message', "The product was added");
@@ -83,54 +47,22 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        return view('products.edit', ['product' => $product, 'categories' => $categories]);
+        return view('products.edit', ['product' => $product, 'categories' => Category::all()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, ProductService $productService, $id)
     {
-        $validate = $this->validate(request(), [
-            //put fields to be validated here
-            'title' => 'required',
-            'category' => 'required',
-            'description' => 'required',
-            'ingredients' => 'required',
-            'price' => 'required',
-            'image' => 'sometimes|mimes:jpg,png,jpeg|max:5048',
-        ]);
-
-        //if image upload isn't used, keep the previous image path
         if (empty($request['image'])) {
-            Product::where('id', $product->id)
-                ->update([
-                    'title' => $request->input('title'),
-                    'category_id' => $request->input('category'),
-                    'description' => $request->input('description'),
-                    'ingredients' => $request->input('ingredients'),
-                    'price' => $request->input('price'),
-                    'user_id' => auth()->user()->id
-                ]);
+            $productService->updateWithoutImage($request, $id);
         } else {
-            //else' image is uploaded
-            $image = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $image);
-
-            Product::where('id', $product->id)
-                ->update([
-                    'title' => $request->input('title'),
-                    'category_id' => $request->input('category'),
-                    'description' => $request->input('description'),
-                    'ingredients' => $request->input('ingredients'),
-                    'image' => $image,
-                    'price' => $request->input('price'),
-                    'user_id' => auth()->user()->id
-                ]);
+            $productService->updateWithImage($request, $id);
         }
 
         Session::flash('message', "The product was Updated");
+
         return view('products.index', ['products' => Product::all()])->with('message', 'Product updated!');
     }
 
