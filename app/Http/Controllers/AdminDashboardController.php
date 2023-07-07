@@ -10,28 +10,32 @@ use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
 {
-    public function dashboard(){
+    public function dashboard()
+    {
 
         //sales this week - orders total within date range on a chart
         $startOfLastWeek = Carbon::now()->subWeek()->startOfWeek();
-        $endOfLastWeek  = Carbon::now()->subWeek()->startOfWeek();
+        $endOfLastWeek  = Carbon::now()->subWeek()->endOfWeek();
 
         $startWeek = Carbon::now()->startOfWeek();
         $endWeek   = Carbon::now()->endOfWeek();
 
         //find total made from sales this week
-        $salesThisWeek = Order::whereBetween('created_at',
-        [$startWeek, $endWeek])->sum('total_price');
+        $salesThisWeek = Order::whereBetween(
+            'created_at',
+            [$startWeek, $endWeek]
+        )->sum('total_price');
         //find total made from sales this week
-        $salesLastWeek = Order::whereBetween('created_at',
-        [$startOfLastWeek, $endOfLastWeek])->sum('total_price');
+        $salesLastWeek = Order::whereBetween(
+            'created_at',
+            [$startOfLastWeek, $endOfLastWeek]
+        )->sum('total_price');
         //find percentage between thisweek and last week
 
-        if($salesLastWeek && $salesLastWeek > 0){
-            $percentage = ($salesThisWeek-$salesLastWeek)/$salesThisWeek *100;
+        if ($salesLastWeek && $salesLastWeek > 0) {
+            $percentage = ($salesThisWeek - $salesLastWeek) / $salesThisWeek * 100;
             $percentage = round($percentage);
-        }
-        else{
+        } else {
             $percentage = 100;
         }
 
@@ -45,20 +49,23 @@ class AdminDashboardController extends Controller
         $userAmount = User::count();
 
         //new customers this week
-        $customersThisWeek = User::whereBetween('created_at',
-        [$startWeek, $endWeek])->count();
+        $customersThisWeek = User::whereBetween(
+            'created_at',
+            [$startWeek, $endWeek]
+        )->count();
 
         //total from last week
-        $customersThisWeek = User::whereBetween('created_at',
-        [$startWeek, $endWeek])->count();
+        $customersThisWeek = User::whereBetween(
+            'created_at',
+            [$startWeek, $endWeek]
+        )->count();
 
         //customer weekly growth
         $customerTotal = User::count();
-        if($customersThisWeek > 0){
+        if ($customersThisWeek > 0) {
             $customerGrowth = $customersThisWeek * 100 / $customerTotal;
             $customerGrowth = round($customerGrowth);
-        }
-        else{
+        } else {
             $customerGrowth = 0;
         }
 
