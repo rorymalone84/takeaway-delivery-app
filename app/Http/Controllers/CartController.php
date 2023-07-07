@@ -74,13 +74,14 @@ class CartController extends Controller
     public function reorder($id)
     {
         $order_products = Order::where('id', $id)->with('products')->get();
+        $cartProducts = session()->get('cartProducts', []);
 
         foreach ($order_products as $order_product) {
             foreach ($order_product->products as $product) {
                 if (isset($cartProducts['quantity'])) {
                     $cartProducts['quantity']++;
                 } else {
-                    $cartProducts[] = [
+                    $cartProducts['id'] = [
                         'id' => $product->id,
                         'quantity' => $product->pivot->quantity,
                         'title' => $product->title,

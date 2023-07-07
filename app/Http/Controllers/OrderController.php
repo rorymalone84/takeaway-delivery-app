@@ -46,7 +46,7 @@ class OrderController extends Controller
         $total_price = $orderService->getTotal($request);
 
         //create order
-        $order = Order::create($request->all() + ['total_price' => $total_price, 'status' => 'pending']);
+        $order = Order::create($request->all() + ['total_price' => $total_price, 'user_id' => auth()->user()->id ?? null, 'status' => 'pending']);
 
         //save record of order with products quantity and price
         foreach (session('cartProducts') as $product) {

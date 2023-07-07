@@ -29,6 +29,7 @@ class OrderRequest extends FormRequest
             'customer_phone' => 'required', 'numeric|max:10',
             'delivery_price' => 'required', 'numeric',
             'store_id' => 'required',
+            'user_id' => 'sometimes'
         ];
     }
 }
