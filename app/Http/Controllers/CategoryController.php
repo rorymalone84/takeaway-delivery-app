@@ -21,8 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $category = new Category();
-        return view('categories.create', ['category' => $category]);
+        return view('categories.create', ['category' => new Category()]);
     }
 
     /**
@@ -37,7 +36,7 @@ class CategoryController extends Controller
 
         Session::flash('message', "The Category was Created");
 
-        return view('categories.index',['categories' => Category::all()]);
+        return view('categories.index', ['categories' => Category::all()]);
     }
 
     /**
@@ -45,7 +44,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', ['category' => $category]);        
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -53,15 +52,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        Category::where('id',$category->id)
+        Category::where('id', $category->id)
             ->update([
                 'title' => $request->input('title'),
                 'user_id' => auth()->user()->id
             ]);
 
-            Session::flash('message', "The Category was updated");
+        Session::flash('message', "The Category was updated");
 
-            return view('categories.index',['categories' => Category::all()]);
+        return view('categories.index', ['categories' => Category::all()]);
     }
 
     /**
@@ -73,6 +72,6 @@ class CategoryController extends Controller
 
         Session::flash('message', "The Category was deleted");
 
-        return view('categories.index',['categories' => Category::all()] );
+        return view('categories.index', ['categories' => Category::all()]);
     }
 }
