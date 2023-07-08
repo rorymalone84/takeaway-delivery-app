@@ -47,8 +47,6 @@
         </tr>
     </x-table.table>
 
-
-
     <div class="text-center p-8">
         <div class="mt-10 flex items-center justify-center gap-x-6">
             <a href="{{ url()->previous() }}"

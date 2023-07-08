@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
-
     // order index for admin area
     public function index()
     {

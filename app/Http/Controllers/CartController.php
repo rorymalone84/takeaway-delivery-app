@@ -71,7 +71,7 @@ class CartController extends Controller
     }
 
 
-    public function reorder($id)
+    public function reorder($id, CartService $cartService)
     {
         $order_products = Order::where('id', $id)->with('products')->get();
         $cartProducts = session()->get('cartProducts', []);
@@ -81,7 +81,7 @@ class CartController extends Controller
                 if (isset($cartProducts['quantity'])) {
                     $cartProducts['quantity']++;
                 } else {
-                    $cartProducts['id'] = [
+                    $cartProducts[$product->id] = [
                         'id' => $product->id,
                         'quantity' => $product->pivot->quantity,
                         'title' => $product->title,
@@ -93,8 +93,10 @@ class CartController extends Controller
 
         session()->put('cartProducts', $cartProducts);
 
+        $totalQuantity = $cartService->updateTotalQuantity();
+
         Session::flash('message', "Re-order in the cart");
 
-        return redirect()->back();
+        return redirect()->back()->with($totalQuantity);
     }
 }

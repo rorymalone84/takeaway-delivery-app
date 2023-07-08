@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <x-table.table :headers="['Order_id', 'Order date', 'products', 'delivery cost', 'cost', 'status', 'action', 'order again']">
+    <x-table.table :headers="['Order_id', 'Order date', 'products', 'delivery cost', 'cost', 'status', 'order again']">
         @foreach ($previous_orders as $previous_order)
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                 <x-table.table-data>
@@ -37,10 +37,6 @@
                 </x-table.table-data>
                 <x-table.table-data>
                     {{ $previous_order->status }}
-                </x-table.table-data>
-                <x-table.table-data>
-                    <a href="{{ route('products.edit', $previous_order->id) }}"
-                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Order Again?</a>
                 </x-table.table-data>
                 <x-table.table-data>
                     <a href="{{ route('reorder.to.cart', $previous_order->id) }}" event.preventDefault()
