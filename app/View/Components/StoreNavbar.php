@@ -3,8 +3,9 @@
 namespace App\View\Components;
 
 use Closure;
-use Illuminate\Contracts\View\View;
+use App\Models\Category;
 use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
 class StoreNavbar extends Component
 {
@@ -21,6 +22,6 @@ class StoreNavbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.store-navbar');;
+        return view('layouts.store-navbar', ['categories' => Category::all()]);
     }
 }

@@ -8,8 +8,10 @@
 
     <div class="mx-auto w-4/5 mb-4 pb-8">
         @foreach ($categories as $category)
-            <div class="text-2xl text-gray-800 font-bold pt-12 mb-8">{{ $category->title }}</div>
-            <hr class="border-1 border-gray-300">
+            <a id="{{ $category->title }}">
+                <div class="text-2xl text-gray-800 font-bold pt-12 mb-8">{{ $category->title }}</div>
+                <hr class="border-1 border-gray-300">
+            </a>
             <div class="grid sm:grid-cols-4 gap-8 pt-20 mx-auto w-4/5">
                 @foreach ($category->products as $product)
                     <div
