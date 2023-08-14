@@ -45,7 +45,7 @@
         <div class="flex flex-col my-3 space-y-2 text-lg hover:font-b text-gray-600">
             @auth
                 @if (Auth::user()->hasRole('admin'))
-                    <a href="{{ url('/admin/dashboard') }}" class="hover:text-gray-900"><span>Dashboard</span></a>
+                    <a href="{{ url('/admin/dashboard') }}" class="hover:text-gray-900"><span>Admin Dashboard</span></a>
                     <hr>
                 @endif
                 @if (Auth::user()->hasRole('customer'))
