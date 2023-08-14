@@ -47,6 +47,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect('/users/dashboard');
+        return redirect('/')->with('message', 'You are now registered');
     }
 }
