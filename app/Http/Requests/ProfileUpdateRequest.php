@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\User;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+use JustSteveKing\LaravelPostcodes\Rules\Postcode;
+use JustSteveKing\LaravelPostcodes\Service\PostcodeService;
 
 class ProfileUpdateRequest extends FormRequest
 {
@@ -17,6 +19,10 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'postcode' => ['required', new Postcode(resolve(PostcodeService::class))],
+            'phone' => 'required',
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
         ];
     }
