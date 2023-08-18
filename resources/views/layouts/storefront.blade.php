@@ -29,9 +29,9 @@
 <x-store-navbar />
 
 <section
-    class="bg-fixed bg-[url('https://images.ctfassets.net/e7lf9n037kdg/DckrbzNNtzivFHBBN5M9n/a445064c86205cc7c11245e311f5c387/pic-3.jpg_resize_420_2C280__038_ssl_1')] bg-gray-800 bg-blend-multiply">
+    class="bg-fixed bg-gray-400 bg-blend-multiply object-cover bg-[url('https://i0.wp.com/chawjcreations.com/wp-content/uploads/2020/07/IMG_8011.jpg?fit=2553%2C1436&ssl=1')] dark:bg-[url('https://images.ctfassets.net/e7lf9n037kdg/DckrbzNNtzivFHBBN5M9n/a445064c86205cc7c11245e311f5c387/pic-3.jpg_resize_420_2C280__038_ssl_1')]  dark:bg-gray-800 dark:bg-blend-multiply">
 
-    <body class="bg-slate-700 h-screen antialiased leading-none font-sans pt-40">
+    <body class="h-screen antialiased leading-none font-sans pt-40 bg-slate-200 dark:bg-slate-700 ">
         <div id="app">
             <div class="">
                 {{ $slot }}
