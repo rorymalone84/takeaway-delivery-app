@@ -1,8 +1,8 @@
 <nav x-data="accordion(6)" x-cloak
-    class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 tracking-wide  shadow-md bg-slate-900 bg-opacity-90 md:py-8 md:px-8 lg:px-14">
+    class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 tracking-wide  shadow-md bg-orange-100 bg-opacity-90 md:py-8 md:px-8 lg:px-14 dark:bg-slate-900">
     <!-- Left nav -->
     <div class="flex items-center">
-        <a href="#" class="font-serif text-slate-300 text-2xl md:text-3xl tracking-wide">
+        <a href="#" class="font-serif text-slate-900 text-2xl md:text-3xl tracking-wide dark:text-slate-300">
             Takeaway App
         </a>
         @include('storefront.nav-partials.theme-toggle')
@@ -11,7 +11,7 @@
 
     <!-- Centre Nav product menu links -->
     <div x-data="{ open: false }" @mouseleave="open = false" class="relative inline-block"
-        :class="{ 'text-slate-300 ': open, 'text-slate-300 ': !open }">
+        :class="{ 'text-slate-900 dark:text-slate-300 ': open, 'text-slate-900 dark:text-slate-300 ': !open }">
         <!-- Menu Dropdown Toggle Button -->
         @include('storefront.nav-partials.menu-dropdown-button')
 

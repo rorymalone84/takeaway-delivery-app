@@ -1,4 +1,5 @@
-<div @click="handleClick()" x-data="{ open: false }" class="text-gray-300 cursor-pointer lg:hidden flex flex-row">
+<div @click="handleClick()" x-data="{ open: false }"
+    class="text-gray-700 dark:text-gray-300 cursor-pointer lg:hidden flex flex-row">
     <button @click="open = ! open" class="w-6 h-6 text-lg">
         <svg x-show="! open" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
             :clas="{ 'transition-full each-in-out transform duration-500': !open }">

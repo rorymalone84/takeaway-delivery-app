@@ -26,7 +26,7 @@
     </script>
 </head>
 
-<body class="antialiased bg-gray-100 dark-mode:bg-gray-900">
+<body class="h-screen antialiased bg-gray-100 dark-mode:bg-gray-900">
     <div class="flex-col w-full md:flex md:flex-row md:min-h-screen dark-mode:bg-gray-900 ">
         <div @click.away="open = false"
             class="flex flex-col flex-shrink-0 w-full text-gray-700 bg-white md:w-64 dark-mode:text-gray-200 dark-mode:bg-gray-800"
@@ -76,8 +76,6 @@
                 </form>
             </nav>
         </div>
-        <!-- success message-->
-
 
         <!-- Page Heading -->
         <div class="w-full dark:bg-gray-900">
@@ -86,6 +84,7 @@
                     {{ $header }}
                 </div>
             </header>
+            <!-- success message-->
             @if (session()->has('message'))
                 <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                     <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
