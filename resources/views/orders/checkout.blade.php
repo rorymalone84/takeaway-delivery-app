@@ -1,6 +1,6 @@
 <x-storefront>
-    <div class="mx-auto w-4/5">
-        <h1 class="text-5xl text-gray-800 font-bold pt-12 mb-4">
+    <div class="mx-auto w-4/5 bg-orange-100 dark:bg-slate-800 rounded-lg pt-12">
+        <h1 class="text-2xl text-gray-700 dark:text-gray-200 pl-6 pb-6">
             Checkout
         </h1>
         <hr class="border-1 border-gray-300">
