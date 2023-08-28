@@ -10,6 +10,7 @@ use App\Models\Category;
 
 class StoreFrontController extends Controller
 {
+    // select a store
     public function index()
     {
         return view('storefront.index', [
@@ -17,6 +18,7 @@ class StoreFrontController extends Controller
         ]);
     }
 
+    // shows the store selected
     public function showstore($id)
     {
         $store = Store::findOrFail($id);
@@ -28,7 +30,7 @@ class StoreFrontController extends Controller
         ]);
     }
 
-
+    //shows the selected product in detail
     public function showproduct($id)
     {
         return view('storefront.showproduct', ['product' => Product::findOrFail($id)]);

@@ -1,6 +1,6 @@
 @php
     $price = 0;
-    $delivery = Session::get('delivery_price');
+    $delivery = Session::get('nearestStore')->delivery_price;
 @endphp
 
 <x-storefront>
