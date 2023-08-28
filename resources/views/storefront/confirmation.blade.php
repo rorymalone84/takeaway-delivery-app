@@ -1,8 +1,10 @@
 <x-storefront>
     <div class="mx-auto w-4/5">
-        <h2 class="text-5xl text-gray-800 font-bold pt-12 mb-8">
-            Order Complete
-        </h2>
+        <x-slot name="header">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Order Complete') }}
+            </h2>
+        </x-slot>
         <hr class="border-1 border-gray-300">
         <div class="flex flex-wrap -mx-3 m-6">
             Thank you {{ $order->customer_name }}
