@@ -2,6 +2,8 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <h1 class="text-bold text-center text-slate-700 dark:text-slate-400 pb-10">Register</h1>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -18,28 +20,28 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div>
+        <div class="mt-4">
             <x-input-label for="address" :value="__('Address')" />
             <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"
                 required autofocus autocomplete="address" />
             <x-input-error :messages="$errors->get('address')" class="mt-2" />
         </div>
 
-        <div>
+        <div class="mt-4">
             <x-input-label for="city" :value="__('City')" />
             <x-text-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')"
                 required autofocus autocomplete="city" />
             <x-input-error :messages="$errors->get('city')" class="mt-2" />
         </div>
 
-        <div>
+        <div class="mt-4">
             <x-input-label for="postcode" :value="__('Postcode')" />
             <x-text-input id="postcode" class="block mt-1 w-full" type="text" name="postcode" :value="old('postcode')"
                 required autofocus autocomplete="postcode" />
             <x-input-error :messages="$errors->get('postcode')" class="mt-2" />
         </div>
 
-        <div>
+        <div class="mt-4">
             <x-input-label for="phone" :value="__('Phone')" />
             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
                 required autofocus autocomplete="phone" />

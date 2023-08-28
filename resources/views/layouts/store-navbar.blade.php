@@ -2,9 +2,7 @@
     class="fixed top-0 z-40 flex flex-wrap items-center justify-between w-full px-4 py-5 tracking-wide  shadow-md bg-orange-100 bg-opacity-90 md:py-8 md:px-8 lg:px-14 dark:bg-slate-900">
     <!-- Left nav -->
     <div class="flex items-center">
-        <a href="#" class="font-serif text-slate-900 text-2xl md:text-3xl tracking-wide dark:text-slate-300">
-            Takeaway App
-        </a>
+        @include('storefront.nav-partials.logo')
         @include('storefront.nav-partials.theme-toggle')
     </div>
     <!-- End left nav -->
